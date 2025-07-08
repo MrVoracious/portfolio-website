@@ -1,8 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+:root {
+  --bg: #f9f9f9;
+  --primary: #2F6AEA;
+}
 
 *{
     margin: 0;
     padding: 0;
+    font-family: inter;
 }
 
 body{
@@ -11,9 +15,28 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    background: var(--bg);
+}
+
+main{
+    width: 100vw;
+    height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.name{
     font-family: inter;
-    background: #131313;
-    color: whitesmoke;
     font-weight: 1000;
-    font-size: 3vmax;
+    font-size: 4em;
+    animation: landingAnime 900ms cubic-bezier(0.7,0,0.3,1) forwards;
+}
+
+@keyframes landingAnime {
+    0%{
+        transform: scale(1);
+    } 100%{
+        transform: scale(0.8);
+    }
 }
