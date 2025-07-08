@@ -32,13 +32,33 @@ main{
     font-family: inter;
     font-weight: 1000;
     font-size: 4em;
-    animation: landingAnime 900ms cubic-bezier(0.7,0,0.3,1) forwards;
+    position: relative;
+    animation: landingAnimeName 900ms cubic-bezier(0.7,0,0.3,1) forwards;
 }
 
-@keyframes landingAnime {
+.name::after{
+    content: "Developer";
+    position: absolute;
+    right: 0;
+    top: 110%;
+    font-weight: 100;
+    font-size: 0.4em;
+    animation: landingAnimeSub 900ms cubic-bezier(0.7,0,0.3,1) forwards;
+}
+
+@keyframes landingAnimeName {
     0%{
         transform: scale(1);
     } 100%{
         transform: scale(0.8);
+    }
+}
+@keyframes landingAnimeSub {
+    0%{
+        opacity: 0;
+        transform: translateY(5vh);
+    } 100%{
+        transform: translateY(0vh);
+        opacity: 1;
     }
 }
