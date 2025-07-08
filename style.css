@@ -1,5 +1,6 @@
 :root {
-  --bg: #f9f9f9;
+  --bg: #131313;
+  --text: white;
   --primary: #2F6AEA;
 }
 
@@ -16,6 +17,7 @@ body{
     justify-content: center;
     align-items: center;
     background: var(--bg);
+    color: var(--text);
 }
 
 main{
