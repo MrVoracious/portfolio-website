@@ -1,16 +1,16 @@
 :root {
-  --bg: #131313;
-  --text: white;
-  --primary: #2F6AEA;
+    --bg: #131313;
+    --text: white;
+    --primary: #2F6AEA;
 }
 
-*{
+* {
     margin: 0;
     padding: 0;
     font-family: inter;
 }
 
-body{
+body {
     width: 100vw;
     height: 100dvh;
     display: flex;
@@ -18,47 +18,164 @@ body{
     align-items: center;
     background: var(--bg);
     color: var(--text);
+    background-color: #0f0f0f;
+    /* base dark tone */
+    background-image:
+        radial-gradient(at 25% 25%, rgba(255, 255, 255, 0.03), transparent 60%);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-main{
+main {
     width: 100vw;
     height: 100dvh;
     display: flex;
     justify-content: center;
     align-items: center;
+
 }
 
-.name{
+.name {
     font-family: inter;
     font-weight: 1000;
     font-size: 4em;
     position: relative;
-    animation: landingAnimeName 900ms cubic-bezier(0.7,0,0.3,1) forwards;
+    animation: landingAnimeName 900ms cubic-bezier(0.7, 0, 0.3, 1) forwards;
 }
 
-.name::after{
+.name::after {
     content: "Developer";
     position: absolute;
     right: 0;
     top: 110%;
     font-weight: 100;
     font-size: 0.4em;
-    animation: landingAnimeSub 900ms cubic-bezier(0.7,0,0.3,1) forwards;
+    animation: landingAnimeSub 900ms cubic-bezier(0.7, 0, 0.3, 1) forwards;
 }
 
 @keyframes landingAnimeName {
-    0%{
+    0% {
         transform: scale(1);
-    } 100%{
+    }
+
+    100% {
         transform: scale(0.8);
     }
 }
 @keyframes landingAnimeSub {
-    0%{
+    0% {
         opacity: 0;
         transform: translateY(5vh);
-    } 100%{
+    }
+
+    100% {
         transform: translateY(0vh);
         opacity: 1;
     }
+}
+@keyframes landingAnimeLogo {
+    0% {
+        opacity: 0;
+        transform: translateX(-5vh);
+    }
+
+    100% {
+        transform: translateX(0vh);
+        opacity: 1;
+    }
+}
+@keyframes landingAnimeOption {
+    0% {
+        opacity: 0;
+        transform: translateX(5vh);
+    }
+
+    100% {
+        transform: translateX(0vh);
+        opacity: 1;
+    }
+}
+@keyframes landingAnimeNav {
+    0% {
+        opacity: 0;
+        transform: translateY(-5vh) translateX(-50%);
+    }
+
+    100% {
+        transform: translateY(0vh) translateX(-50%);
+        opacity: 1;
+    }
+}
+
+nav {
+    width: 100vw;
+    height: 10vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2vw;
+    box-sizing: border-box;
+}
+
+.logo {
+    height: 3.85vh;
+    width: auto;
+    animation: landingAnimeLogo 900ms cubic-bezier(0.7, 0, 0.3, 1) forwards;
+}
+
+.options {
+    position: absolute;
+    left: 50%;
+    display: flex;
+    height: 5.25vh;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1.5px solid rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    align-items: center;
+    padding-left: 2vw;
+    border-radius: 100vw;
+    transform: translateX(-50%);
+    animation: landingAnimeNav 900ms cubic-bezier(0.7, 0, 0.3, 1) forwards;
+}
+
+.option {
+    margin-right: 2vw;
+    font-size: 0.95em;
+}
+
+.otherOption{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5.25vh;
+    border: 1.5px solid rgba(255, 255, 255, 0.25);
+    padding: 0 2vw;
+    border-radius: 100vw;
+    animation: landingAnimeOption 900ms cubic-bezier(0.7, 0, 0.3, 1) forwards;
+}
+
+.bubble {
+  position: absolute;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+  color: white;
+  font-size: 0.9rem;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transform-style: preserve-3d;
+  will-change: transform;
+  pointer-events: none;
+  /* animation: float 6s ease-in-out infinite; */
+}
+
+@keyframes float {
+  0%   { transform: translateY(0px) translateZ(0); }
+  50%  { transform: translateY(-15px) translateZ(0); }
+  100% { transform: translateY(0px) translateZ(0); }
 }
