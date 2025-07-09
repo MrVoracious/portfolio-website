@@ -121,7 +121,7 @@ main {
     top: 110%;
     font-weight: 100;
     font-size: 0.4em;
-    animation: landingAnimeSub 900ms cubic-bezier(0.7, 0, 0.3, 1) forwards;
+    /* animation: landingAnimeSub 900ms cubic-bezier(0.7, 0, 0.3, 1) forwards; */
 }
 
 @keyframes landingAnimeName {
@@ -173,11 +173,11 @@ main {
 @keyframes landingAnimeNav {
     0% {
         opacity: 0;
-        transform: translateY(-5vh) translateX(-50%);
+        transform: translateY(-5vh);
     }
 
     100% {
-        transform: translateY(0vh) translateX(-50%);
+        transform: translateY(0vh);
         opacity: 1;
     }
 }
@@ -189,9 +189,8 @@ nav {
     top: 0;
     left: 0;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    padding: 0 2vw;
     box-sizing: border-box;
 }
 
@@ -202,24 +201,22 @@ nav {
 }
 
 .options {
-    position: absolute;
-    left: 50%;
     display: flex;
+    align-items: center;
     height: 5.25vh;
     background: rgba(255, 255, 255, 0.0);
     border: 1px solid rgba(255, 255, 255, 0.25);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
-    align-items: center;
     padding-left: 2vw;
     border-radius: 1vh;
-    transform: translateX(-50%);
     animation: landingAnimeNav 900ms cubic-bezier(0.7, 0, 0.3, 1) forwards;
 }
 
 .option {
     margin-right: 2vw;
     font-size: 0.8em;
+    cursor: pointer;
 }
 
 .otherOption {
@@ -250,6 +247,23 @@ nav {
     /* animation: float 6s ease-in-out infinite; */
 }
 
+.css{
+    color: #2965f1;
+    border: 1px solid rgba(41, 101, 241, 0.4);
+}
+.html{
+    color: #FF5733;
+    border: 1px solid rgba(255, 88, 51, 0.4);
+}
+.python{
+    color: #FFE873;
+    border: 1px solid rgba(255, 232, 115, 0.4);
+}
+.js{
+    color: #f0db4f;
+    border: 1px solid rgba(240, 218, 79, 0.4);
+}
+
 @keyframes float {
     0% {
         transform: translateY(0px) translateZ(0);
@@ -265,26 +279,25 @@ nav {
 }
 
 .blurDiv{
-    width: 500px;
+    width: 1000px;
     aspect-ratio: 1 / 1;
     position: absolute;
-    left: 20vw;
-    top: 30vh;
-    /* filter: blur(25px);
-    background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 70%);
-    border-radius: 1000px;
-    transform: translateX(-50%) translateY(-50%); */
-    background-image: url(Gradient-harmony-2.png);
+    left: 0;
+    bottom: 0;
+    transform: translateX(-50%) translateY(50%);
+    background-image: url(whiteBlob.png);
     background-position: center;
     background-size: cover;
-    animation: rotate 10s linear infinite;
+    animation: rotate 5s infinite;
 }
 
 @keyframes rotate {
     0%{
-        transform: rotate(360deg);
+        opacity: 0.6;
+    } 50%{
+        opacity: 0.9;
     } 100%{
-        transform: rotate(0deg)
+        opacity: 0.6;
     }
 }
 

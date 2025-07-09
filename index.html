@@ -17,14 +17,12 @@
 <body> 
     <img src="noise.png" alt="noise" class="noise">
     <nav>
-        <img src="vk.png" alt="" class="logo">
         <div class="options">
             <div class="option">Projects</div>
             <div class="option">About</div>
             <div class="option">Contact</div>
             <div class="option">Lorem</div>
         </div>
-        <div class="otherOption">Lorem</div>
     </nav>
     <main>
         <div id="center" class="name">
@@ -61,6 +59,8 @@
             radiusX: 300 + Math.random() * 40,
             radiusY: 300 + Math.random() * 40,
             speed: 0.0015 + Math.random() * 0.0015,
+            waveAmplitude: 5 + Math.random() * 10, // wavy distort
+            waveFreq: 2 + Math.random() * 2,       // how fast wave wiggles
         });
     });
 
@@ -74,12 +74,17 @@
 
     function animateOrbit(t) {
         orbitData.forEach(data => {
-            const { el, radiusX, radiusY, speed} = data;
+            const { el, radiusX, radiusY, speed, waveAmplitude, waveFreq } = data;
             data.angle += speed;
 
             // Elliptical orbit
             let x = centerX + radiusX * Math.cos(data.angle);
             let y = centerY + radiusY * Math.sin(data.angle);
+
+            // Add wave wobble
+            x += Math.sin(t * 0.001 * waveFreq) * waveAmplitude;
+            y += Math.cos(t * 0.001 * waveFreq) * waveAmplitude;
+
 
             // Repel from cursor
             const dx = mouseX - x;
