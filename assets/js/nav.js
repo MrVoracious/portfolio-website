@@ -5,9 +5,6 @@ let scaleTimeout;
 function moveHighlight(option) {
     clearTimeout(scaleTimeout);
 
-    options.querySelector(".active").classList.remove("active")
-    option.classList.add("active")
-
     highlight.style.transform = 'scale(1.1)';
     highlight.style.background = 'rgba(255, 255, 255, 0)';
     highlight.style.border = "1px solid rgba(255, 255, 255, 0.1)"
@@ -31,9 +28,18 @@ function returnToActive() {
     highlight.style.left = `calc(${active.offsetLeft}px + 0.375vw)`;
     highlight.style.height = `calc(${active.offsetHeight}px - 0.5vw)`;
     highlight.style.transform = 'scale(1)';
+    highlight.style.background = 'rgba(255, 255, 255, 0.1)';
+    highlight.style.border = "1px solid rgba(255, 255, 255, 0)"
 }
 options.querySelectorAll(".option").forEach(option => {
-    option.addEventListener("click", () => moveHighlight(option));
+    option.addEventListener("click", (e) => {
+        e.preventDefault();
+        moveHighlight(option)
+
+        scaleTimeout = setTimeout(() => {
+            window.location.href = option.href;
+        }, 400);
+    });
 });
 
 options.addEventListener("mouseleave", returnToActive);
