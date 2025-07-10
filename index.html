@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vandit Kad</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="stylesheet" href="assets/css/nav.css">
+    <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/icons/favicon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -15,13 +16,14 @@
 </head>
 
 <body>
-    <img src="noise.png" alt="noise" class="noise">
+    <img src="assets/images/noise.png" alt="noise" class="noise">
     <nav>
-        <div class="options">
-            <div class="option">Projects</div>
-            <div class="option">About</div>
-            <div class="option">Contact</div>
-            <div class="option">Lorem</div>
+        <div class="options" id="options">
+            <a class="option active" href="#">Home</a>
+            <a class="option" href="/projects">Projects</a>
+            <a class="option" href="/about">About</a>
+            <a class="option" href="/contact">Contact</a>
+            <div class="highlight" id="highlight"></div>
         </div>
     </nav>
     <main>
@@ -38,147 +40,7 @@
         <div class="bubble">Firebase</div>
         <div class="blurDiv"></div>
     </main>
-    <section class="projectSection">
-        <div class="projectsLogo">
-            <div data-project-name="ctrl" class="proLogo"><img src="Ctrl.jpg" alt=""></div>
-            <div data-project-name="byte" class="proLogo"><img src="Ctrl.jpg" alt=""></div>
-            <div data-project-name="bot" class="proLogo"><img src="Ctrl.jpg" alt=""></div>
-            <div data-project-name="crypt" class="proLogo"><img src="Ctrl.jpg" alt=""></div>
-        </div>
-        <div class="projectsNameContainer">
-            <div class="projectName ctrl">
-                <span class="pre">C</span>
-                <span class="pre">T</span>
-                <span class="pre">R</span>
-                <span class="pre">L</span>
-            </div>
-            <div class="projectName byte">
-                <span class="pre">B</span>
-                <span class="pre">Y</span>
-                <span class="pre">T</span>
-                <span class="pre">E</span>
-            </div>
-            <div class="projectName bot">
-                <span class="pre">B</span>
-                <span class="pre">O</span>
-                <span class="pre">T</span>
-            </div>
-            <div class="projectName crypt">
-                <span class="pre">C</span>
-                <span class="pre">R</span>
-                <span class="pre">Y</span>
-                <span class="pre">P</span>
-                <span class="pre">T</span>
-            </div>
-        </div>
-    </section>
+    <script src="assets/js/index.js"></script>
+    <script src="assets/js/nav.js"></script>
 </body>
-<script>
-
-    document.querySelectorAll('.proLogo').forEach(div => {
-        let projectDiv;
-        const container = document.querySelector('.projectsNameContainer');
-        div.onmouseout = function () {
-            projectDiv.querySelectorAll('span').forEach(span => {
-                const delay = getComputedStyle(span).animationDelay;
-                const playState = getComputedStyle(span).animationPlayState;
-                span.classList.remove("appear")
-            });
-        }
-
-        div.onmouseover = function () {
-            const project = this.dataset.projectName
-            const projectList = project.toUpperCase().split("");
-            projectDiv = container.querySelector(`.${project}`);
-            console.log(project)
-            const middle = (projectList.length - 1) / 2;
-            const spans = projectDiv.querySelectorAll('span')
-
-            for (let i = 0; i < projectList.length; i++) {
-                const letter = projectList[i];
-                let delay = middle - i;
-                delay = (delay === 0 || Math.abs(delay) === 0.5) ? 0 : Math.abs(Math.floor(delay));
-                spans[i].classList.remove("pre")
-                spans[i].classList.add("appear")
-                spans[i].style.transitionDelay = `${delay * 50}ms`;
-            }
-        };
-    });
-
-    const center = document.getElementById('center');
-
-    let centerX, centerY;
-
-    function updateCenter() {
-        const centerRect = center.getBoundingClientRect();
-        centerX = centerRect.left + centerRect.width / 2;
-        centerY = centerRect.top + centerRect.height / 2;
-    }
-    updateCenter();
-    window.addEventListener('resize', updateCenter);
-
-    const bubbles = document.querySelectorAll('.bubble');
-    const orbitData = [];
-
-    const total = bubbles.length;
-
-    bubbles.forEach((bubble, i) => {
-        const baseAngle = (2 * Math.PI * i) / total;
-
-        orbitData.push({
-            el: bubble,
-            angle: baseAngle,
-            radiusX: 300 + Math.random() * 40,
-            radiusY: 300 + Math.random() * 40,
-            speed: 0.0015 + Math.random() * 0.0015,
-            waveAmplitude: 5 + Math.random() * 10,
-            waveFreq: 2 + Math.random() * 2,
-        });
-    });
-
-    let mouseX = 0;
-    let mouseY = 0;
-
-    document.addEventListener('mousemove', e => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-    });
-
-    function animateOrbit(t) {
-        orbitData.forEach(data => {
-            const { el, radiusX, radiusY, speed, waveAmplitude, waveFreq } = data;
-            data.angle += speed;
-
-            // Elliptical orbit
-            let x = centerX + radiusX * Math.cos(data.angle);
-            let y = centerY + radiusY * Math.sin(data.angle);
-
-            // Add wave wobble
-            x += Math.sin(t * 0.001 * waveFreq) * waveAmplitude;
-            y += Math.cos(t * 0.001 * waveFreq) * waveAmplitude;
-
-
-            // Repel from cursor
-            const dx = mouseX - x;
-            const dy = mouseY - y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            const repelRadius = 100;
-
-            if (dist < repelRadius) {
-                const angle = Math.atan2(dy, dx);
-                const force = (repelRadius - dist) / repelRadius;
-                x -= Math.cos(angle) * force * 30;
-                y -= Math.sin(angle) * force * 30;
-            }
-
-            el.style.left = `${x}px`;
-            el.style.top = `${y}px`;
-        });
-
-        requestAnimationFrame(animateOrbit);
-    }
-
-    requestAnimationFrame(animateOrbit);
-</script>
-
 </html>
