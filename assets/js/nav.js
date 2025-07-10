@@ -39,3 +39,34 @@ options.querySelectorAll(".option").forEach(option => {
 options.addEventListener("mouseleave", returnToActive);
 window.addEventListener("load", returnToActive);
 window.addEventListener("resize", returnToActive);
+
+document.addEventListener('DOMContentLoaded', function () {
+    // scroll
+    var script = document.createElement('script');
+    script.src = "https://unpkg.com/lenis@1.1.2/dist/lenis.min.js";
+    document.head.appendChild(script);
+
+    script.onload = function () {
+        const lenis = new Lenis()
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault()
+
+                const target = document.querySelector(this.getAttribute('href'))
+                if (target) {
+                    lenis.scrollTo(target, {
+                        offset: 0,
+                        duration: 1,
+                        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+                    })
+                }
+            })
+        })
+        function raf(time) {
+            lenis.raf(time)
+            requestAnimationFrame(raf)
+        }
+        requestAnimationFrame(raf)
+    };
+
+});
