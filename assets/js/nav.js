@@ -42,7 +42,6 @@ options.querySelectorAll(".option").forEach(option => {
     });
 });
 
-options.addEventListener("mouseleave", returnToActive);
 window.addEventListener("load", returnToActive);
 window.addEventListener("resize", returnToActive);
 
