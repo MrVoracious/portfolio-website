@@ -1,9 +1,12 @@
 const options = document.getElementById("options");
 const highlight = document.getElementById("highlight");
-let scaleTimeout;  // To manage multiple hovers quickly
+let scaleTimeout;
 
 function moveHighlight(option) {
     clearTimeout(scaleTimeout);
+
+    options.querySelector(".active").classList.remove("active")
+    option.classList.add("active")
 
     highlight.style.transform = 'scale(1.1)';
     highlight.style.background = 'rgba(255, 255, 255, 0)';
@@ -30,7 +33,7 @@ function returnToActive() {
     highlight.style.transform = 'scale(1)';
 }
 options.querySelectorAll(".option").forEach(option => {
-    option.addEventListener("mouseenter", () => moveHighlight(option));
+    option.addEventListener("click", () => moveHighlight(option));
 });
 
 options.addEventListener("mouseleave", returnToActive);
