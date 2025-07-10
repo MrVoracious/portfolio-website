@@ -12,13 +12,8 @@ options.addEventListener("mouseleave", () => {
     returnToActive()
 });
 
-// window.addEventListener('load', returnToActive);
-// window.addEventListener('resize', returnToActive);
-
-setTimeout(() => {
-  highlight.classList.add("loaded")
-  returnToActive()
-}, 500);
+window.addEventListener('load', returnToActive);
+window.addEventListener('resize', returnToActive);
 
 function returnToActive() {
     const active = options.querySelector(".active");
