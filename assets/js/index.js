@@ -1,3 +1,12 @@
+if (sessionStorage.getItem('hasVisited')) {
+    document.getElementById("loader1").style.display = "none"
+    document.getElementById("loader2").style.display = "none"
+} else{
+    sessionStorage.setItem('hasVisited', 'true');
+    document.getElementById("loader1").style.opacity = "1"
+    document.getElementById("loader2").style.opacity = "1"
+}
+
 const center = document.getElementById('center');
 
 let centerX, centerY;

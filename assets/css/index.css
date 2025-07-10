@@ -45,7 +45,22 @@ main {
     top: 50%;
     left: 50%;
     transform: translateX(calc(-50% - 1.5px)) translateY(calc(-50% - 17.75px));
-    animation: loader1 600ms cubic-bezier(0.7, 0, 0.3, 1) forwards 150ms;
+    animation: loader1 900ms cubic-bezier(0.7, 0, 0.3, 1) forwards 200ms;
+    opacity: 0;
+    z-index: 100000;
+}
+
+.loaderFiller {
+    position: absolute;
+    height: 12.5px;
+    width: 13.5px;
+    border-radius: 3px;
+    background: rgb(255, 255, 255);
+    top: 50%;
+    left: 50%;
+    transform: translateX(calc(-50% - 1.5px)) translateY(calc(-50% - 17.75px));
+    animation: loader2 900ms cubic-bezier(0.7, 0, 0.3, 1) forwards;
+    opacity: 0;
     z-index: 100000;
 }
 
@@ -92,19 +107,6 @@ main {
         width: 13.5px;
         border-radius: 3px;
     }
-}
-
-.loaderFiller {
-    position: absolute;
-    height: 12.5px;
-    width: 13.5px;
-    border-radius: 3px;
-    background: rgb(255, 255, 255);
-    top: 50%;
-    left: 50%;
-    transform: translateX(calc(-50% - 1.5px)) translateY(calc(-50% - 17.75px));
-    animation: loader2 600ms cubic-bezier(0.7, 0, 0.3, 1) forwards;
-    z-index: 100000;
 }
 
 .name::after {
