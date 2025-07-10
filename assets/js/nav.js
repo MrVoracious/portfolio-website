@@ -24,9 +24,9 @@ function returnToActive() {
     clearTimeout(scaleTimeout);
     const active = options.querySelector(".active");
 
-    highlight.style.width = `calc(${active.offsetWidth}px - 0.75vw)`;
-    highlight.style.left = `calc(${active.offsetLeft}px + 0.375vw)`;
-    highlight.style.height = `calc(${active.offsetHeight}px - 0.5vw)`;
+    highlight.style.width = `calc(${active.offsetWidth}px - 1vh)`;
+    highlight.style.left = `calc(${active.offsetLeft}px + 0.5vh)`;
+    highlight.style.height = `calc(${active.offsetHeight}px - 1vh)`;
     highlight.style.transform = 'scale(1)';
     highlight.style.background = 'rgba(255, 255, 255, 0.1)';
     highlight.style.border = "1px solid rgba(255, 255, 255, 0)"
@@ -46,33 +46,33 @@ options.addEventListener("mouseleave", returnToActive);
 window.addEventListener("load", returnToActive);
 window.addEventListener("resize", returnToActive);
 
-document.addEventListener('DOMContentLoaded', function () {
-    // scroll
-    var script = document.createElement('script');
-    script.src = "https://unpkg.com/lenis@1.1.2/dist/lenis.min.js";
-    document.head.appendChild(script);
+// document.addEventListener('DOMContentLoaded', function () {
+//     // scroll
+//     var script = document.createElement('script');
+//     script.src = "https://unpkg.com/lenis@1.1.2/dist/lenis.min.js";
+//     document.head.appendChild(script);
 
-    script.onload = function () {
-        const lenis = new Lenis()
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault()
+//     script.onload = function () {
+//         const lenis = new Lenis()
+//         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+//             anchor.addEventListener('click', function (e) {
+//                 e.preventDefault()
 
-                const target = document.querySelector(this.getAttribute('href'))
-                if (target) {
-                    lenis.scrollTo(target, {
-                        offset: 0,
-                        duration: 1,
-                        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
-                    })
-                }
-            })
-        })
-        function raf(time) {
-            lenis.raf(time)
-            requestAnimationFrame(raf)
-        }
-        requestAnimationFrame(raf)
-    };
+//                 const target = document.querySelector(this.getAttribute('href'))
+//                 if (target) {
+//                     lenis.scrollTo(target, {
+//                         offset: 0,
+//                         duration: 1,
+//                         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+//                     })
+//                 }
+//             })
+//         })
+//         function raf(time) {
+//             lenis.raf(time)
+//             requestAnimationFrame(raf)
+//         }
+//         requestAnimationFrame(raf)
+//     };
 
-});
+// });
