@@ -10,11 +10,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
 </head>
 
-<body> 
+<body>
     <img src="noise.png" alt="noise" class="noise">
     <nav>
         <div class="options">
@@ -35,15 +35,87 @@
         <div class="bubble">CSS</div>
         <div class="bubble">JS</div>
         <div class="bubble">MySQL</div>
+        <div class="bubble">Firebase</div>
+        <div class="blurDiv"></div>
     </main>
-    <div class="blurDiv"></div>
+    <section class="projectSection">
+        <div class="projectsLogo">
+            <div data-project-name="ctrl" class="proLogo"><img src="Ctrl.jpg" alt=""></div>
+            <div data-project-name="byte" class="proLogo"><img src="Ctrl.jpg" alt=""></div>
+            <div data-project-name="bot" class="proLogo"><img src="Ctrl.jpg" alt=""></div>
+            <div data-project-name="crypt" class="proLogo"><img src="Ctrl.jpg" alt=""></div>
+        </div>
+        <div class="projectsNameContainer">
+            <div class="projectName ctrl">
+                <span class="pre">C</span>
+                <span class="pre">T</span>
+                <span class="pre">R</span>
+                <span class="pre">L</span>
+            </div>
+            <div class="projectName byte">
+                <span class="pre">B</span>
+                <span class="pre">Y</span>
+                <span class="pre">T</span>
+                <span class="pre">E</span>
+            </div>
+            <div class="projectName bot">
+                <span class="pre">B</span>
+                <span class="pre">O</span>
+                <span class="pre">T</span>
+            </div>
+            <div class="projectName crypt">
+                <span class="pre">C</span>
+                <span class="pre">R</span>
+                <span class="pre">Y</span>
+                <span class="pre">P</span>
+                <span class="pre">T</span>
+            </div>
+        </div>
+    </section>
 </body>
 <script>
+
+    document.querySelectorAll('.proLogo').forEach(div => {
+        let projectDiv;
+        const container = document.querySelector('.projectsNameContainer');
+        div.onmouseout = function () {
+            projectDiv.querySelectorAll('span').forEach(span => {
+                const delay = getComputedStyle(span).animationDelay;
+                const playState = getComputedStyle(span).animationPlayState;
+                span.classList.remove("appear")
+            });
+        }
+
+        div.onmouseover = function () {
+            const project = this.dataset.projectName
+            const projectList = project.toUpperCase().split("");
+            projectDiv = container.querySelector(`.${project}`);
+            console.log(project)
+            const middle = (projectList.length - 1) / 2;
+            const spans = projectDiv.querySelectorAll('span')
+
+            for (let i = 0; i < projectList.length; i++) {
+                const letter = projectList[i];
+                let delay = middle - i;
+                delay = (delay === 0 || Math.abs(delay) === 0.5) ? 0 : Math.abs(Math.floor(delay));
+                spans[i].classList.remove("pre")
+                spans[i].classList.add("appear")
+                spans[i].style.transitionDelay = `${delay * 50}ms`;
+            }
+        };
+    });
+
     const center = document.getElementById('center');
 
-    const centerRect = center.getBoundingClientRect();
-    const centerX = centerRect.left + centerRect.width / 2;
-    const centerY = centerRect.top + centerRect.height / 2;
+    let centerX, centerY;
+
+    function updateCenter() {
+        const centerRect = center.getBoundingClientRect();
+        centerX = centerRect.left + centerRect.width / 2;
+        centerY = centerRect.top + centerRect.height / 2;
+    }
+    updateCenter();
+    window.addEventListener('resize', updateCenter);
 
     const bubbles = document.querySelectorAll('.bubble');
     const orbitData = [];
@@ -59,8 +131,8 @@
             radiusX: 300 + Math.random() * 40,
             radiusY: 300 + Math.random() * 40,
             speed: 0.0015 + Math.random() * 0.0015,
-            waveAmplitude: 5 + Math.random() * 10, // wavy distort
-            waveFreq: 2 + Math.random() * 2,       // how fast wave wiggles
+            waveAmplitude: 5 + Math.random() * 10,
+            waveFreq: 2 + Math.random() * 2,
         });
     });
 
