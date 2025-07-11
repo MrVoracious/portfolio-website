@@ -30,20 +30,28 @@
     </nav>
     <div class="name" id="container">
         <span class="tagline">
-            Howdy! Meet your trusted design partner, <br>
-            crafting strong brands for SaaS and Web3
+            Howdy! From Websites to Discord bots, <br>
+            I design with code and code with style.
         </span>
         <div id="text">
-            <span>V</span>
-            <span>a</span>
-            <span>n</span>
-            <span>d</span>
-            <span>i</span>
-            <span>t</span>
-            <span>&nbsp;</span>
-            <span>K</span>
-            <span>a</span>
-            <span>d</span>
+            <span class="char">
+                V
+                <div data-rotate="30deg" class="popup"><img src="assets/images/pc.png" alt=""></div>
+            </span>
+            <span class="char">a
+                <div data-rotate="-30deg" class="popup"><img src="assets/images/macbook.png" alt=""></div>
+
+            </span>
+            <span class="char">n
+                <div data-rotate="45deg" class="popup">👀</div>
+            </span>
+            <span class="char">d</span>
+            <span class="char">i</span>
+            <span class="char">t</span>
+            <span class="char">&nbsp;</span>
+            <span class="char">K</span>
+            <span class="char">a</span>
+            <span class="char">d</span>
         </div>
     </div>
     <script src="assets/js/nav.js"></script>
@@ -56,7 +64,7 @@
             text.style.fontSize = fontSize + 'px';
 
             function grow() {
-                if (text.scrollWidth < (container.clientWidth - 80) && fontSize < 500) {
+                if (text.scrollWidth < (container.clientWidth - 50) && fontSize < 500) {
                     fontSize++;
                     text.style.fontSize = fontSize + 'px';
                     grow()
@@ -70,6 +78,19 @@
 
         window.onload = fitTextToWidth;
         window.onresize = fitTextToWidth;
+
+        document.querySelectorAll('.char').forEach(span => {
+            const popup = span.querySelector('.popup');
+            if (popup) {
+                span.addEventListener('mouseenter', () => {
+                    const rotate = popup.getAttribute('data-rotate');
+                    popup.style.transform = `scale(1) rotate(${rotate})`;
+                });
+                span.addEventListener('mouseleave', () => {
+                    popup.style.transform = 'scale(0) rotate(0deg)';
+                });
+            }
+        });
     </script>
 </body>
 
