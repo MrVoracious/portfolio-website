@@ -90,3 +90,7 @@ body {
 .projectName > span.pre{
     transition: none !important;
 }
+
+.projectName > .default{
+    color: rgba(47, 106, 234, 0.5);
+}
