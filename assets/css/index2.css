@@ -62,7 +62,7 @@ main {
     transform: translateY(-100%);
     width: 100%;
     display: flex;
-    padding: 0 25px;
+    padding: 0 40px;
     box-sizing: border-box;
     font-size: 2.5rem;
     color: rgba(255, 255, 255, 0.5);
@@ -84,12 +84,12 @@ main {
     left: 50%;
     bottom: -130%;
     opacity: 0.6;
-    transform: translateX(-50%) translateY(30%);
+    transform: translateX(-50%) translateY(35%);
     background-image: url(../images/whiteSun.png);
     background-position: center;
     background-size: cover;
     animation: goUp 1.25s ease-out forwards;
-    filter: brightness(0) saturate(100%) invert(100%) sepia(65%) saturate(2164%) hue-rotate(338deg) brightness(107%) contrast(104%) blur(200px);
+    filter: blur(200px);
 }
 
 @keyframes goUp {
