@@ -94,3 +94,19 @@ body {
 /* .projectName > .default{
     color: rgba(47, 106, 234, 0.5);
 } */
+
+.blurDiv {
+    width: 2000px;
+    aspect-ratio: 1 / 1;
+    position: absolute;
+    z-index: 2;
+    left: 50%;
+    bottom: 100%;
+    opacity: 0.6;
+    transform: translateX(-50%) translateY(35%);
+    background-image: url(../images/whiteSun.png);
+    background-position: center;
+    background-size: cover;
+    filter: blur(200px);
+    pointer-events: none;
+}

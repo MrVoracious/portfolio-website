@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #EEF4FB;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 500px;
+    height: max-content;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+}
+
+.display {
+    width: 100%;
+    aspect-ratio: 770 / 530;
+    background: #BCCBE3;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.screenContainer {
+    width: 100%;
+    height: 85%;
+    background: #e7e8ea;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.camera{
+    width: 1.168831169%;
+    aspect-ratio: 1 / 1;
+    background: #111219;
+    position: absolute;
+    left: 50%;
+    top: 1.95%;
+    border-radius: 100vw;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.screen {
+    width: 95.45454545%;
+    height: 92.2%;
+    box-sizing: border-box;
+    border: 1px solid rgba(41, 37, 35, 0.6);
+    box-shadow: 0 0 0 1px #ACAEAF;
+    background: url(../images/blueWallpaper.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.stand {
+    width: 24.54545455%;
+    aspect-ratio: 189 / 123;
+    background: url(../images/stand.png);
+    background-size: cover;
+    background-position: center;
+}
+
+.keyboardnmouse{
+    width: 100%;
+    display: flex;
+}
+
+.keyboard{
+    margin-left: 18.7012987%;
+    width: 62.85714286%;
+    aspect-ratio: 1815 / 118;
+    margin-top: 1.207751938%;
+}
+
+.mouse{
+    margin-left: 02.337662338%;
+    aspect-ratio: 459 / 167;
+    width: 15.84415584%;
+}
