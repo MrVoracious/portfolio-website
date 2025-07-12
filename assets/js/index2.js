@@ -74,14 +74,15 @@ for (let i = 0; i < skills.length; i++) {
     const maxX = bubblecontainer.clientWidth;
     const maxY = bubblecontainer.clientHeight;
 
-    const startX = Math.random() * (maxX - 80); // leave space for bubble size
-    const startY = Math.random() * (maxY - 40);
+    const startX = Math.random() * (maxX - 80);
+    const startY = Math.random() * (maxY - 60);
 
     bubble.style.left = `${startX}px`;
     bubble.style.top = `${startY}px`;
+    bubble.style.animation = `bubblePop 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards ${600 + (300 * i)}ms`
 
-    bubble.dataset.dx = (Math.random() * 0.5 + 0.3) * (Math.random() < 0.5 ? 1 : -1);
-    bubble.dataset.dy = (Math.random() * 0.5 + 0.3) * (Math.random() < 0.5 ? 1 : -1);
+    bubble.dataset.dx = (Math.random() * 0.1 + 0.3) * (Math.random() < 0.5 ? 1 : -1);
+    bubble.dataset.dy = (Math.random() * 0.1 + 0.3) * (Math.random() < 0.5 ? 1 : -1);
 
     bubblecontainer.appendChild(bubble);
     bubbles.push(bubble);
@@ -117,3 +118,81 @@ function animate() {
 }
 
 animate();
+
+const canvas = document.getElementById("grid-bg");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let mouse = { x: null, y: null };
+window.addEventListener("mousemove", e => {
+  mouse.x = e.clientX;
+  mouse.y = e.clientY;
+});
+window.addEventListener("resize", () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  initGrid();
+});
+
+const spacing = 40;
+let points = [];
+
+function initGrid() {
+  points = [];
+  for (let y = 0; y <= canvas.height; y += spacing) {
+    for (let x = 0; x <= canvas.width; x += spacing) {
+      points.push({ x, y, ox: x, oy: y });
+    }
+  }
+}
+initGrid();
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.strokeStyle = "rgba(255,255,255,0.1)";
+  ctx.lineWidth = 1;
+
+  // Draw lines
+  for (let i = 0; i < points.length; i++) {
+    let p = points[i];
+
+    // Pull points near the mouse
+    let dx = p.x - mouse.x;
+    let dy = p.y - mouse.y;
+    let dist = Math.sqrt(dx * dx + dy * dy);
+    let force = Math.max(100 - dist, 0) / 100;
+
+    if (force > 0) {
+      let angle = Math.atan2(dy, dx);
+      p.x += Math.cos(angle) * force * 3;
+      p.y += Math.sin(angle) * force * 3;
+    }
+
+    // Ease back to original position
+    p.x += (p.ox - p.x) * 0.05;
+    p.y += (p.oy - p.y) * 0.05;
+  }
+
+  // Draw horizontal + vertical lines
+  for (let y = 0; y <= canvas.height; y += spacing) {
+    ctx.beginPath();
+    for (let x = 0; x <= canvas.width; x += spacing) {
+      let pt = points.find(p => Math.abs(p.x - x) < spacing && Math.abs(p.y - y) < spacing);
+      if (pt) ctx.lineTo(pt.x, pt.y);
+    }
+    ctx.stroke();
+  }
+
+  for (let x = 0; x <= canvas.width; x += spacing) {
+    ctx.beginPath();
+    for (let y = 0; y <= canvas.height; y += spacing) {
+      let pt = points.find(p => Math.abs(p.x - x) < spacing && Math.abs(p.y - y) < spacing);
+      if (pt) ctx.lineTo(pt.x, pt.y);
+    }
+    ctx.stroke();
+  }
+
+  requestAnimationFrame(draw);
+}
+draw();

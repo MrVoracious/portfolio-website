@@ -165,7 +165,7 @@ main {
     bottom: 0;
     left: 0;
     width: 100vw;
-    z-index: 1;
+    z-index: -1;
     overflow: hidden;
     pointer-events: none;
 }
@@ -173,23 +173,37 @@ main {
 .bubble {
     position: absolute;
     padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 9999px;
+    color: white;
     font-size: 0.9rem;
+    backdrop-filter: blur(4px);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    white-space: nowrap;
-    user-select: none;
-    transition: opacity 0.3s;
-    background: rgba(255, 255, 255, 0);
-    backdrop-filter: invert(1);
+    transform-style: preserve-3d;
+    will-change: transform;
+    pointer-events: none;
+    transform: scale(0);
+}
 
-    font-family: poppins;
-    font-weight: 600;
-    color: black;
-    -webkit-text-stroke: 0.5px white;
-    text-stroke: 0.5px white;
+@keyframes bubblePop {
+    0%{
+        transform: scale(0);
+    } 100%{
+        transform: scale(1);
+    }
 }
 
 .char:nth-child(5) {
     z-index: -1;
+}
+
+#grid-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
 }
