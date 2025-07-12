@@ -62,7 +62,7 @@ anime({
 
 
 
-const skills = ['Python', 'Firebase', 'React', 'Discord.js', 'HTML', 'CSS', 'JS', 'Git', 'Linux'];
+const skills = ['Python', 'Firebase', 'HTML', 'CSS', 'JS'];
 const containerRect = bubblecontainer.getBoundingClientRect();
 const bubbles = [];
 
