@@ -10,13 +10,15 @@
     <link rel="shortcut icon" type="image/x-icon" href="assets/icons/favicon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
 </head>
 
 <body>
+    <canvas id="grid-bg"></canvas>
     <img src="assets/images/noise.png" alt="noise" class="noise">
+    <div class="blurDiv"></div>
+    <div class="overlay"></div>
     <nav>
         <div class="options" id="options">
             <a class="option active" href="#">Home</a>
@@ -26,21 +28,35 @@
             <div class="highlight" id="highlight"></div>
         </div>
     </nav>
-    <main id="main">
-        <div id="center" class="name">
-            Vandit Kad
-            <div id="loader1" class="loader"></div>
-            <div id="loader2" class="loaderFiller"></div>
+    <div id="bubble-container"></div>
+    <div class="name" id="container">
+        <span class="tagline">
+            Howdy! From Websites to Discord bots, <br>
+            I design with code and code with style.
+        </span>
+        <div id="text">
+            <span class="char">
+                V
+                <div data-rotate="30deg" class="popup"><img src="assets/images/pc.png" alt=""></div>
+            </span>
+            <span class="char">a
+                <div data-rotate="-30deg" class="popup"><img src="assets/images/macbook.png" alt=""></div>
+
+            </span>
+            <span class="char">n
+                <div data-rotate="45deg" class="popup">👀</div>
+            </span>
+            <span class="char">d</span>
+            <span class="char">i</span>
+            <span class="char">t</span>
+            <span class="char">&nbsp;</span>
+            <span class="char">K</span>
+            <span class="char">a</span>
+            <span class="char">d</span>
         </div>
-        <div class="bubble">Python</div>
-        <div class="bubble">HTML</div>
-        <div class="bubble">CSS</div>
-        <div class="bubble">JS</div>
-        <div class="bubble">MySQL</div>
-        <div class="bubble">Firebase</div>
-        <div class="blurDiv"></div>
-    </main>
-    <script src="assets/js/index.js"></script>
+    </div>
     <script src="assets/js/nav.js"></script>
+    <script src="assets/js/index.js"></script>
 </body>
+
 </html>
