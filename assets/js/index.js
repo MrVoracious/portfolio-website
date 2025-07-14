@@ -1,6 +1,3 @@
-const bubblecontainer = document.getElementById('bubble-container');
-
-
 function fitTextToWidth() {
   const container = document.getElementById('container');
   const text = document.getElementById('text');
@@ -15,7 +12,6 @@ function fitTextToWidth() {
       grow()
     } else {
       container.style.height = fontSize + 'px'
-      bubblecontainer.style.height = fontSize + 'px'
     }
   }
 
@@ -59,65 +55,6 @@ anime({
   duration: 1000,
   delay: 300
 });
-
-
-
-const skills = ['Python', 'Firebase', 'HTML', 'CSS', 'JS'];
-const containerRect = bubblecontainer.getBoundingClientRect();
-const bubbles = [];
-
-for (let i = 0; i < skills.length; i++) {
-  const bubble = document.createElement('div');
-  bubble.classList.add('bubble');
-  bubble.textContent = skills[i];
-
-  const maxX = bubblecontainer.clientWidth;
-  const maxY = bubblecontainer.clientHeight;
-
-  const startX = Math.random() * (maxX - 80);
-  const startY = Math.random() * (maxY - 80);
-
-  bubble.style.left = `${startX}px`;
-  bubble.style.top = `${startY}px`;
-  bubble.style.animation = `bubblePop 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards ${600 + (300 * i)}ms`
-
-  bubble.dataset.dx = (Math.random() * 0.1 + 0.3) * (Math.random() < 0.5 ? 1 : -1);
-  bubble.dataset.dy = (Math.random() * 0.1 + 0.3) * (Math.random() < 0.5 ? 1 : -1);
-
-  bubblecontainer.appendChild(bubble);
-  bubbles.push(bubble);
-}
-function animate() {
-  const maxX = bubblecontainer.clientWidth;
-  const maxY = bubblecontainer.clientHeight;
-
-  bubbles.forEach(bubble => {
-    let x = parseFloat(bubble.style.left);
-    let y = parseFloat(bubble.style.top);
-    let dx = parseFloat(bubble.dataset.dx);
-    let dy = parseFloat(bubble.dataset.dy);
-
-    x += dx;
-    y += dy;
-
-    // Bounce off bubblecontainer walls
-    if (x < 0 || x + bubble.offsetWidth > maxX) {
-      dx = -dx;
-      bubble.dataset.dx = dx;
-    }
-    if (y < 0 || y + bubble.offsetHeight > maxY) {
-      dy = -dy;
-      bubble.dataset.dy = dy;
-    }
-
-    bubble.style.left = `${x}px`;
-    bubble.style.top = `${y}px`;
-  });
-
-  requestAnimationFrame(animate);
-}
-
-animate();
 
 const canvas = document.getElementById("grid-bg");
 const ctx = canvas.getContext("2d");
