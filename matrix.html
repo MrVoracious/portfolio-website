@@ -113,16 +113,42 @@
                     Typing Speed
                 </div>
             </div>
-            <div class="gridItem center linkedin">IN</div>
-            <div class="gridItem center github">Git</div>
+            <div class="gridItem center linkedin">
+                <img src="assets/icons/linkedin-brands-solid-full.svg" alt="">
+            </div>
+            <div class="gridItem center github">
+                <img src="assets/icons/github-brands-solid-full.svg" alt="">
+            </div>
             <div class="gridItem center contact">Contact Me</div>
             <div class="gridItem stack">
                 <div class="heading">
                     Tech Stack
                 </div>
+                <div class="techstackContainer">
+                    <div class="stackScroller">
+                        <img src="assets/icons/bootstrap-brands-solid-full.svg" alt="">
+                        <img src="assets/icons/css-brands-solid-full.svg" alt="">
+                        <img class="color" src="assets/icons/firebase-icon-logo-png_seeklogo-615938.png" alt="">
+                        <img src="assets/icons/html5-brands-solid-full.svg" alt="">
+                        <img src="assets/icons/js-brands-solid-full.svg" alt="">
+                        <img src="assets/icons/react-brands-solid-full.svg" alt="">
+
+                        <!-- duplicate for loop -->
+
+                        <img src="assets/icons/bootstrap-brands-solid-full.svg" alt="">
+                        <img src="assets/icons/css-brands-solid-full.svg" alt="">
+                        <img class="color" src="assets/icons/firebase-icon-logo-png_seeklogo-615938.png" alt="">
+                        <img src="assets/icons/html5-brands-solid-full.svg" alt="">
+                        <img src="assets/icons/js-brands-solid-full.svg" alt="">
+                        <img src="assets/icons/react-brands-solid-full.svg" alt="">
+                    </div>
+                </div>
             </div>
             <div class="gridItem activity">
                 <div class="heading">Github Activity</div>
+                <div class="contributions" id="contributions"></div>
+                <div id="contrib-grid"></div>
+                <div class="lastPushed" id="lastPushed"></div>
             </div>
             <div class="gridItem minilabs">
                 <div class="heading">Mini Lab</div>
@@ -134,54 +160,7 @@
         </div>
     </main>
     <script src="assets/js/nav.js"></script>
-    <script>
-        const achievmentDivs = document.getElementsByClassName("achievment")
-        const achievmentsContainer = document.getElementById("achievmentsContainer")
-        function styleAchievments() {
-            for (let i = 0; i < achievmentDivs.length; i++) {
-                const e = achievmentDivs[i];
-                achievmentsContainer.scrollTop = 0;
-                achievmentsContainer.style.overflow = "hidden"
-                e.style.zIndex = `${achievmentDivs.length - i}`;
-                if (i > 0) {
-                    e.style.top = `${(i * 12.5) + 15}%`;
-                    if (i > 4) {
-                        e.style.filter = `brightness(${0.2})`;
-                    } else{
-                        e.style.filter = `brightness(${1 - i * 0.15 - 0.2})`;
-                    }
-                    e.style.transform = `scale(${1 - (i * 0.025)})`;
-                }
-            }
-        }
-        function achievmentMouseIn() {
-            for (let i = 0; i < achievmentDivs.length; i++) {
-                const e = achievmentDivs[i];
-                if (i > 0) {
-                    e.style.top = `${(i * 12.5) + 20}%`;
-                }
-            }
-        }
-        function achievmentMouseOut() {
-            styleAchievments()
-        }
-
-        function achievmentClick() {
-            for (let i = 0; i < achievmentDivs.length; i++) {
-                const e = achievmentDivs[i];
-                achievmentsContainer.style.overflow = "scroll"
-                if (i > 0) {
-                    e.style.top = `calc(${75 * i}px + ${0.5 * i}vh)`;
-                    e.style.filter = `brightness(1)`;
-                    e.style.transform = `scale(1)`;
-                }
-            }
-        }
-
-        styleAchievments()
-        achievmentsContainer.addEventListener('mouseenter', achievmentMouseIn);
-        achievmentsContainer.addEventListener('mouseleave', achievmentMouseOut);
-    </script>
+    <script src="assets/js/matrix.js"></script>
 </body>
 
 </html>

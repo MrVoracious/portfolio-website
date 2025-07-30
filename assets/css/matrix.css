@@ -91,7 +91,7 @@ main {
     grid-row: 7 / span 2;
 }
 
-.contact{
+.contact {
     grid-column: 15 / span 6;
     grid-row: 7 / span 2;
 }
@@ -104,6 +104,7 @@ main {
 .activity {
     grid-column: 21 / span 16;
     grid-row: 1 / span 8;
+    position: relative;
 }
 
 .keyboard {
@@ -111,17 +112,17 @@ main {
     grid-row: 9 / span 7;
 }
 
-.minilabs{
+.minilabs {
     grid-column: 26 / span 11;
     grid-row: 9 / span 10;
 }
 
-.fun{
+.fun {
     grid-column: 9 / span 17;
     grid-row: 16 / span 3;
 }
 
-.heading{
+.heading {
     border: 1px solid var(--border);
     border-radius: 10000px;
     padding: 0.5vw 1vw;
@@ -130,17 +131,17 @@ main {
     font-size: 0.9rem;
 }
 
-.center{
+.center {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.subHeading{
+.subHeading {
     font-size: 1.1rem;
 }
 
-.achievmentsContainer{
+.achievmentsContainer {
     width: 100%;
     height: 100%;
     display: flex;
@@ -153,7 +154,7 @@ main {
     cursor: pointer;
 }
 
-.achievment{
+.achievment {
     width: 100%;
     height: 75px;
     top: 0;
@@ -174,7 +175,7 @@ main {
     z-index: 1;
 }
 
-.achievment > .icon{
+.achievment>.icon {
     height: calc(100% - 1.5vw);
     aspect-ratio: 1 / 1;
     background: black;
@@ -182,7 +183,7 @@ main {
     margin-right: 0.75vw;
 }
 
-.content{
+.content {
     width: 100%;
     height: 50%;
     display: flex;
@@ -190,7 +191,7 @@ main {
     justify-content: space-between;
 }
 
-.achievment > .content > .header{
+.achievment>.content>.header {
     width: 100%;
     display: flex;
     align-items: center;
@@ -198,15 +199,140 @@ main {
     color: black;
 }
 
-.achievment > .content > .header > .name{
+.achievment>.content>.header>.name {
     font-size: 0.85rem;
     font-weight: 500;
 }
-.achievment > .content > .header > .time{
+
+.achievment>.content>.header>.time {
     font-size: 0.75rem;
     color: rgba(0, 0, 0, 0.6);
 }
-.achievment > .content > .desc{
+
+.achievment>.content>.desc {
     color: rgba(0, 0, 0, 0.8);
     font-size: 0.8rem;
+}
+
+.techstackContainer {
+    width: 100%;
+    height: 100%;
+    ;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding-left: 0%;
+}
+
+.stackScroller {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: max-content;
+    height: 100%;
+    animation: scrollLeft 15s linear infinite;
+}
+
+.techstackContainer::after {
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: linear-gradient(to right, #101010, transparent, #101010);
+}
+
+.techstackContainer>.stackScroller>img {
+    height: 75px;
+    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7487%) hue-rotate(296deg) brightness(104%) contrast(103%);
+    margin: 0 1vw;
+}
+
+.techstackContainer>.stackScroller>img.color {
+    filter: none;
+}
+
+@keyframes scrollLeft {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/*  */
+
+#contrib-grid {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(7, 10%);
+  gap: 5px;
+  /* padding: 20px; */
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+}
+
+.contrib {
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 5px;
+  background-color: #161b22;
+  position: relative;
+}
+
+.contrib[data-count="1"] { background-color: #0e4429; }
+.contrib[data-count="2"] { background-color: #006d32; }
+.contrib[data-count="3"] { background-color: #26a641; }
+.contrib[data-count="4"] { background-color: #39d353; }
+.contrib[data-count="5"],
+.contrib[data-count="6"],
+.contrib[data-count="7"],
+.contrib[data-count="8"] {
+  background-color: #39d353;
+}
+
+/* Tooltip */
+.contrib:hover::after {
+  content: attr(data-date);
+  position: absolute;
+  background: #222;
+  color: #fff;
+  font-size: 10px;
+  padding: 4px 6px;
+  border-radius: 4px;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.contrib:hover {
+  outline: 1px solid #888;
+}
+
+.contributions{
+    position: absolute;
+    right: 2vh;
+    top: calc(2vh + 0.5vw);
+    font-size: 0.85rem;
+}
+
+.lastPushed{
+    font-size: 0.85rem;
+}
+
+.linkedin, .github{
+    padding: 0;
+    cursor: pointer;
+}
+.linkedin img, .github img{
+    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7487%) hue-rotate(296deg) brightness(104%) contrast(103%);
+    height: calc(100% - 3vh);
 }
