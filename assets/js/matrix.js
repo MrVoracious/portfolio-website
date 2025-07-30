@@ -32,7 +32,7 @@ function achievmentMouseOut() {
 function achievmentClick() {
     for (let i = 0; i < achievmentDivs.length; i++) {
         const e = achievmentDivs[i];
-        achievmentsContainer.style.overflow = "scroll"
+        achievmentsContainer.style.overflow = "overlay"
         if (i > 0) {
             e.style.top = `calc(${75 * i}px + ${0.5 * i}vh)`;
             e.style.filter = `brightness(1)`;
