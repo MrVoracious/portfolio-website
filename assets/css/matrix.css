@@ -150,6 +150,7 @@ main {
     box-sizing: border-box;
     margin-top: 2vh;
     overflow: hidden;
+    scrollbar-color: var(--border) transparent;
     position: relative;
     cursor: pointer;
 }
@@ -267,72 +268,88 @@ main {
 /*  */
 
 #contrib-grid {
-  display: grid;
-  grid-auto-flow: column;
-  grid-template-rows: repeat(7, 10%);
-  gap: 5px;
-  /* padding: 20px; */
-  width: 100%;
-  height: 100%;
-  overflow: overlay;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(7, 10%);
+    gap: 5px;
+    /* padding: 20px; */
+    width: 100%;
+    height: 100%;
+    overflow-x: scroll;
+    scrollbar-color: var(--border) transparent;
 }
 
 .contrib {
-  height: 100%;
-  aspect-ratio: 1 / 1;
-  border-radius: 5px;
-  background-color: #161b22;
-  position: relative;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 5px;
+    background-color: #161b22;
+    position: relative;
 }
 
-.contrib[data-count="1"] { background-color: #0e4429; }
-.contrib[data-count="2"] { background-color: #006d32; }
-.contrib[data-count="3"] { background-color: #26a641; }
-.contrib[data-count="4"] { background-color: #39d353; }
+.contrib[data-count="1"] {
+    background-color: #0e4429;
+}
+
+.contrib[data-count="2"] {
+    background-color: #006d32;
+}
+
+.contrib[data-count="3"] {
+    background-color: #26a641;
+}
+
+.contrib[data-count="4"] {
+    background-color: #39d353;
+}
+
 .contrib[data-count="5"],
 .contrib[data-count="6"],
 .contrib[data-count="7"],
 .contrib[data-count="8"] {
-  background-color: #39d353;
+    background-color: #39d353;
 }
 
 /* Tooltip */
 .contrib:hover::after {
-  content: attr(data-date);
-  position: absolute;
-  background: #222;
-  color: #fff;
-  font-size: 10px;
-  padding: 4px 6px;
-  border-radius: 4px;
-  top: -30px;
-  left: 50%;
-  transform: translateX(-50%);
-  white-space: nowrap;
-  pointer-events: none;
-  z-index: 10;
+    content: attr(data-date);
+    position: absolute;
+    background: #222;
+    color: #fff;
+    font-size: 10px;
+    padding: 4px 6px;
+    border-radius: 4px;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 10;
 }
 
 .contrib:hover {
-  outline: 1px solid #888;
+    outline: 1px solid #888;
 }
 
-.contributions{
+.contributions {
     position: absolute;
     right: 2vh;
     top: calc(2vh + 0.5vw);
     font-size: 0.85rem;
 }
 
-.lastPushed{
+.lastPushed {
     font-size: 0.85rem;
 }
 
-.linkedin, .github{
+.linkedin,
+.github {
     padding: 0;
     cursor: pointer;
 }
-.linkedin img, .github img{
+
+.linkedin img,
+.github img {
     filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7487%) hue-rotate(296deg) brightness(104%) contrast(103%);
     height: calc(100% - 3vh);
 }
