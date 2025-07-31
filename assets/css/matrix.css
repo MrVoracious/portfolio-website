@@ -453,7 +453,7 @@ main {
     content: attr(data-count);
     font-size: 0.4rem;
     position: absolute;
-    bottom: 0.5vh;
+    bottom: 0.625vh;
     left: 50%;
     transform: translateX(-50%) translateY(50%);
     color: rgba(255, 255, 255, 0.5);
@@ -560,8 +560,8 @@ main {
 }
 
 .key.active {
-    background-color: #00bcd4;
-    color: white;
+    background-color: #101010;
+    transform: scale(0.95);
     transition: background-color 0.1s ease;
 }
 
@@ -634,7 +634,7 @@ main {
 
 .touch{
     border: 1px solid #09090A;
-    background: #1D1D1F;
+    background: #222224;
     height: 61%;
     aspect-ratio: 1 / 1;
     border-radius: 100000px;
@@ -647,4 +647,8 @@ main {
 .key.zeroCount::after {
   display: none;
   opacity: 0;
+}
+
+.vanditKey{
+    color: #5092d9;
 }
