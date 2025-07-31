@@ -437,15 +437,29 @@ main {
     align-items: center;
     justify-content: center;
     border-radius: 4px;
-    font-size: 0.5rem;
+    font-size: 0.75rem;
     user-select: none;
     aspect-ratio: 1 / 1;
-    box-sizing: border-box;
     background: #1c1c1c;
     box-shadow:
         inset 0 1px 2px rgba(255, 255, 255, 0.08),
         inset 0 -1px 2px rgba(255, 255, 255, 0.06),
         0 2px 4px rgba(0, 0, 0, 0.4);
+    box-sizing: border-box;
+    position: relative;
+}
+
+.key::after{
+    content: attr(data-count);
+    font-size: 0.4rem;
+    position: absolute;
+    bottom: 0.5vh;
+    left: 50%;
+    transform: translateX(-50%) translateY(50%);
+    color: rgba(255, 255, 255, 0.5);
+    width: min-content;
+    height: min-content;
+    font-weight: 400;
 }
 
 .delete,
@@ -507,6 +521,20 @@ main {
     align-items: center;
 }
 
+.arrowKey img{
+    width: 15%;
+}
+
+.down img{
+    transform: rotate(180deg);
+}
+.right img{
+    transform: rotate(90deg);
+}
+.left img{
+    transform: rotate(270deg);
+}
+
 .up {
     grid-column: 2 / span 1;
     grid-row: 1 / span 1;
@@ -537,3 +565,86 @@ main {
     transition: background-color 0.1s ease;
 }
 
+.bLeft{
+    display: flex;
+    justify-content: start;
+    align-items: end;
+    padding: 0.5vh;
+    font-size: 0.5rem;
+}
+.bLeft::after{
+    bottom: calc(100% - 0.75vh);
+    left: calc(100% - 0.75vh);
+    /* transform: translateX(50%) translateY(50%); */
+}
+
+.bRight{
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    padding: 0.5vh;
+    font-size: 0.5rem;
+}
+.bRight::after{
+    bottom: calc(100% - 0.75vh);
+    left: calc(0.75vh);
+}
+
+.bCenter{
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    padding: 0.5vh;
+    font-size: 0.5rem;
+}
+.bCenter::after{
+    bottom: calc(100% - 0.75vh);
+    left: calc(50%);
+}
+
+.space::after{
+    bottom: 50%;
+    left: 50%;
+}
+
+.fKey{
+    display: flex;
+    font-size: 0.5rem;
+    padding: 0.5vh;
+}
+
+.fnKey{
+    display: flex;
+    justify-content: end;
+    align-items: start;
+    padding: 0.5vh;
+    font-size: 0.5rem;
+}
+.fnKey::after{
+    bottom: calc(0.75vh);
+    left: calc(0.75vh);
+}
+
+.arrowKey::after{
+    display: none !important;
+}
+.arrow::after{
+    display: none !important;
+}
+
+.touch{
+    border: 1px solid #09090A;
+    background: #1D1D1F;
+    height: 61%;
+    aspect-ratio: 1 / 1;
+    border-radius: 100000px;
+}
+.touchKey::after{
+    display: none;
+}
+
+
+.key.zeroCount::after {
+  display: none;
+  opacity: 0;
+}
