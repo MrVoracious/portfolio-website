@@ -130,3 +130,33 @@ fetch(`https://api.github.com/users/${githubUsername}/events/public`)
         console.error(err);
         document.getElementById("lastPushed").textContent = "Error fetching push data.";
     });
+
+function loadSpotify() {
+    fetch("https://portfolio-api-server-beta.vercel.app/api/now-playing")
+        .then(res => res.json())
+        .then(data => {
+            const cover = document.getElementById("cover");
+            const status = document.getElementById("status");
+            const title = document.getElementById("title");
+            const artist = document.getElementById("artist");
+            const widget = document.getElementById("spotify-widget")
+
+            cover.src = data.albumImageUrl || "";
+            status.textContent = data.isPlaying ? "Now Playing" : "Last Played";
+            title.textContent = data.title || "Unknown Title";
+            artist.textContent = (data.artist || "Unknown Artist");
+
+            if (data.songUrl) {
+                widget.onclick = () => window.open(data.songUrl, "_blank");
+            } else {
+                widget.onclick = null;
+            }
+        })
+        .catch(err => {
+            document.getElementById("spotify-widget").innerHTML = "<p style='padding:10px;'>Could not load song 😢</p>";
+            console.error("Spotify widget error:", err);
+        });
+}
+
+loadSpotify();
+setInterval(loadSpotify, 30000);

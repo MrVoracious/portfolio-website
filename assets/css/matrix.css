@@ -74,6 +74,7 @@ main {
 .spotify {
     grid-column: 1 / span 8;
     grid-row: 9 / span 4;
+    position: relative;
 }
 
 .wpm {
@@ -231,7 +232,7 @@ main {
     align-items: center;
     width: max-content;
     height: 100%;
-    animation: scrollLeft 15s linear infinite;
+    animation: scrollLeft 10s linear infinite;
 }
 
 .techstackContainer::after {
@@ -352,4 +353,67 @@ main {
 .github img {
     filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7487%) hue-rotate(296deg) brightness(104%) contrast(103%);
     height: calc(100% - 3vh);
+}
+
+.spotify:hover .spotifyLogo img{
+    filter: none;
+}
+
+.spotifyLogo{
+    background: black;
+    height: 1.75rem;
+    width: 1.75rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1 / 1;
+    position: absolute;
+    right: 1vh;
+    top: 1vh;
+    border: 1px solid var(--border);
+    border-radius: 10000px;
+}
+
+.spotifyLogo img{
+    filter: grayscale(1) contrast(2);
+    height: 80%;
+    transition: all 150ms ease-in-out;
+}
+
+
+.spotify{ 
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    cursor: pointer;
+}
+
+#cover{
+    height: 90%;
+    border-radius: 15px;
+    width: auto;
+    margin-right: 2vh;
+}
+
+.songStats{
+    height: 60%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+#status{
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+#title{
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+#artist{
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.75);
 }
