@@ -164,7 +164,9 @@ setInterval(loadSpotify, 30000);
 
 
 const playBar = document.getElementById("playBar");
-const ball = document.getElementById("ball");
+const github = document.getElementById("github");
+const githubOffset = github.getBoundingClientRect()
+const ball = document.getElementById("github");
 const nav = document.getElementById("options");
 const funContainer = document.getElementById("funContainer")
 let paddleWidth = 200;
@@ -189,11 +191,45 @@ elements[1].style.height = navOffets.height + 'px';
 let ballX, ballY, velX, velY;
 let gameInterval = null;
 
+const gitHeight = githubOffset.height
+const gitWidth = githubOffset.width
+const gitLeft = githubOffset.left
+const gitTop = githubOffset.top
+
+function resetGithub(transition) {
+    if (transition) {
+        github.style.transition = "left 300ms ease-out, top 300ms ease-out, width 300ms ease-out, height 300ms ease-out, background 300ms ease-out, border-radius 300ms ease-out"
+        setTimeout(() => {
+            github.style.transition = "none"
+        }, 300);
+    }
+    github.style.position = "absolute"
+    github.style.left = gitLeft + "px"
+    github.style.top = gitTop + "px"
+    github.style.height = gitHeight + "px"
+    github.style.width = gitWidth + "px"
+    github.style.background = "#101010"
+    github.style.borderRadius = 20 + "px"
+}
+
+function gitBall(transition) {
+    if (transition) {
+        github.style.transition = "left 300ms ease-out, top 300ms ease-out, width 300ms ease-out, height 300ms ease-out, background 300ms ease-out, border-radius 300ms ease-out"
+        setTimeout(() => {
+            github.style.transition = "none"
+        }, 300);
+    }
+    github.style.height = ballSize + "px"
+    github.style.width = ballSize + "px"
+    github.style.background = "#ffffff"
+    github.style.borderRadius = 100000 + "px"
+}
+
 function highlightReset() {
     for (let i = 0; i < elements.length; i++) {
         const e = elements[i];
         e.style.transform = "translateX(-50%) translateY(-50%) scale(1)"
-        e.style.opacity = '1';
+        e.style.opacity = '0';
 
     }
 }
@@ -215,105 +251,52 @@ function setPaddlePosition(x) {
     paddleX = Math.max(0, Math.min(window.innerWidth - paddleWidth, x));
     playBar.style.left = paddleX + "px";
 }
+function randInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
+resetGithub(false)
 function startGame() {
+    gitBall(true)
     gameStarted = true;
     playBar.textContent = "";
-    ball.style.display = "block";
     paddleWidth = 200;
     paddleX = funContainer.getBoundingClientRect().left + (funContainer.getBoundingClientRect().width / 2) - paddleWidth / 2;
     playBar.style.width = paddleWidth + 'px';
     setPaddlePosition(paddleX);
-    // nav.style.transform = "scale(1.5) translateY(25%)"
+    playBar.style.border = "1px solid #545454"
+    playBar.style.background = "#ffffffff"
+    velX = Math.random() < 0.5 ? randInt(-10, -5) : randInt(5, 10);
+    velY = Math.random() < 0.5 ? randInt(-3, -2) : randInt(2, 3);
 
-    ballX = 10
-    ballY = 10
-    velX = 10;
-    velY = 7;
-    gameInterval = setInterval(gameLoop, 10);
+    setTimeout(() => {
+        ballX = ball.getBoundingClientRect().left
+        ballY = ball.getBoundingClientRect().top
+        gameInterval = setInterval(gameLoop, 10);
+    }, 300);
+}
+
+function moveBall() {
+    const steps = Math.ceil(Math.max(Math.abs(velX), Math.abs(velY)));
+
+    const stepX = velX / steps;
+    const stepY = velY / steps;
+
+    for (let i = 0; i < steps; i++) {
+        ballX += stepX;
+        ballY += stepY;
+
+        ball.style.left = ballX + "px";
+        ball.style.top = ballY + "px";
+        checkCollisions();
+    }
 }
 
 function gameLoop() {
 
-    paddleOffets = playBar.getBoundingClientRect()
-    ballOffets = ball.getBoundingClientRect()
-    navOffets = nav.getBoundingClientRect()
-    ballX += velX;
-    ballY += velY;
-
     // Bounce off walls
     if (ballX <= 0 || ballX + ballSize >= window.innerWidth) velX *= -1;
     if (ballY <= 0) velY *= -1;
-
-    // Collision detection
-    // const paddleTop = window.innerHeight - 40;
-    const paddleTop = paddleOffets.top
-    const paddleBottom = paddleTop + paddleHeight;
-
-    const ballBottom = ballY + ballSize;
-    const ballCenterX = ballX + ballSize / 2;
-    const ballCenterY = ballY + ballSize / 2;
-
-    if (
-        ballBottom >= paddleTop &&
-        ballCenterX >= paddleX &&
-        ballCenterX <= paddleX + paddleWidth &&
-        ballCenterY <= paddleOffets.top
-    ) {
-        velY *= -1;
-        ballY = paddleTop - ballSize - 1; // Prevent overlap
-    } else if (
-        ballBottom >= paddleTop &&
-        ballOffets.left <= paddleOffets.right &&
-        ballCenterX >= paddleOffets.right
-    ) {
-        velX *= -1;
-        ballX = paddleOffets.right + 1; // Prevent overlap
-    } else if (
-        ballBottom >= paddleTop &&
-        ballOffets.right >= (paddleOffets.left) &&
-        ballCenterX <= (paddleOffets.left)
-    ) {
-        velX *= -1;
-        ballX = paddleOffets.left - ballSize - 1; // Prevent overlap
-    }
-
-    if (
-        ballOffets.top <= navOffets.bottom &&
-        ballOffets.left >= navOffets.left &&
-        ballOffets.right <= navOffets.right &&
-        ballCenterY >= navOffets.bottom
-    ) {
-        velY *= -1;
-        ballY = navOffets.bottom + 1; // Prevent overlap
-        highlightClick()
-        setTimeout(() => {
-            highlightReset()
-        }, 300);
-    }
-    else if (
-        ballOffets.top <= navOffets.bottom &&
-        ballOffets.left <= navOffets.right &&
-        ballCenterX >= navOffets.right
-    ) {
-        velX *= -1;
-        ballX = navOffets.right + 1; // Prevent overlap
-        highlightClick()
-        setTimeout(() => {
-            highlightReset()
-        }, 300);
-    } else if (
-        ballOffets.top <= navOffets.bottom &&
-        ballOffets.right >= navOffets.left &&
-        ballCenterX <= navOffets.left
-    ) {
-        velX *= -1;
-        ballX = navOffets.left - ballSize - 1; // Prevent overlap
-        highlightClick()
-        setTimeout(() => {
-            highlightReset()
-        }, 300);
-    }
 
     // Game Over
     if (ballY > window.innerHeight) {
@@ -323,17 +306,19 @@ function gameLoop() {
         return;
     }
 
-    ball.style.left = ballX + "px";
-    ball.style.top = ballY + "px";
+    moveBall()
 }
 
 function resetGame() {
     gameStarted = false;
-    ball.style.display = "none";
+    // ball.style.display = "none";
+    resetGithub(true)
     playBar.textContent = "PLAY";
     playBar.style.width = funContainer.getBoundingClientRect().width + 'px';
     setPaddlePosition(funContainer.getBoundingClientRect().left)
     gameInterval = null;
+    playBar.style.border = "1px solid var(--border)"
+    playBar.style.background = "#101010"
 }
 
 playBar.addEventListener("click", () => {
@@ -348,3 +333,76 @@ document.addEventListener("mousemove", (event) => {
 
 // Set initial position
 setPaddlePosition(paddleX);
+
+
+function checkCollisions() {
+    paddleOffets = playBar.getBoundingClientRect()
+    ballOffets = ball.getBoundingClientRect()
+    navOffets = nav.getBoundingClientRect()
+    const paddleTop = paddleOffets.top
+    const paddleBottom = paddleTop + paddleHeight;
+
+    const ballBottom = ballY + ballSize;
+    const ballCenterX = ballX + ballSize / 2;
+    const ballCenterY = ballY + ballSize / 2;
+    if (
+        ballBottom >= paddleTop &&
+        ballCenterX >= paddleX &&
+        ballCenterX <= paddleX + paddleWidth &&
+        ballCenterY <= paddleOffets.top
+    ) {
+        velY *= -1;
+        ballY = paddleTop - ballSize - 1;
+    } else if (
+        ballBottom >= paddleTop &&
+        ballOffets.left <= paddleOffets.right &&
+        ballCenterX >= paddleOffets.right
+    ) {
+        velX *= -1;
+        ballX = paddleOffets.right + 1;
+    } else if (
+        ballBottom >= paddleTop &&
+        ballOffets.right >= (paddleOffets.left) &&
+        ballCenterX <= (paddleOffets.left)
+    ) {
+        velX *= -1;
+        ballX = paddleOffets.left - ballSize - 1;
+    }
+
+    if (
+        ballOffets.top <= navOffets.bottom &&
+        ballOffets.left >= navOffets.left &&
+        ballOffets.right <= navOffets.right &&
+        ballCenterY >= navOffets.bottom
+    ) {
+        velY *= -1;
+        ballY = navOffets.bottom + 1;
+        highlightClick()
+        setTimeout(() => {
+            highlightReset()
+        }, 300);
+    }
+    else if (
+        ballOffets.top <= navOffets.bottom &&
+        ballOffets.left <= navOffets.right &&
+        ballCenterX >= navOffets.right
+    ) {
+        velX *= -1;
+        ballX = navOffets.right + 3;
+        highlightClick()
+        setTimeout(() => {
+            highlightReset()
+        }, 300);
+    } else if (
+        ballOffets.top <= navOffets.bottom &&
+        ballOffets.right >= navOffets.left &&
+        ballCenterX <= navOffets.left
+    ) {
+        velX *= -1;
+        ballX = navOffets.left - ballSize - 3;
+        highlightClick()
+        setTimeout(() => {
+            highlightReset()
+        }, 300);
+    }
+}

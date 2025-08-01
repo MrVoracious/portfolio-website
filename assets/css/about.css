@@ -729,18 +729,6 @@ main {
     border: none;
 }
 
-#ball {
-    position: absolute;
-    top: 100px;
-    left: 100px;
-    height: 40px;
-    aspect-ratio: 1 / 1;
-    border-radius: 50%;
-    background-color: white;
-    z-index: 9999;
-}
-
-
 #playBar {
     position: absolute;
     width: 200px;
@@ -754,7 +742,7 @@ main {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    transition: width 100ms ease-out;
+    transition: width 100ms ease-out, border 300ms ease-out, background 300ms ease-out;
     z-index: 9999;
 }
 
@@ -785,4 +773,8 @@ main {
 .highlight2{
     background: rgba(255, 255, 255, 0.5);
     z-index: 1;
+}
+
+.github{
+    z-index: 9999;
 }
