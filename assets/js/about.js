@@ -352,21 +352,21 @@ function checkCollisions() {
         ballCenterY <= paddleOffets.top
     ) {
         velY *= -1;
-        ballY = paddleTop - ballSize - 1;
+        ballY = paddleTop - ballSize - Math.abs(velY);
     } else if (
         ballBottom >= paddleTop &&
         ballOffets.left <= paddleOffets.right &&
         ballCenterX >= paddleOffets.right
     ) {
         velX *= -1;
-        ballX = paddleOffets.right + 1;
+        ballX = paddleOffets.right + Math.abs(velX);
     } else if (
         ballBottom >= paddleTop &&
         ballOffets.right >= (paddleOffets.left) &&
         ballCenterX <= (paddleOffets.left)
     ) {
         velX *= -1;
-        ballX = paddleOffets.left - ballSize - 1;
+        ballX = paddleOffets.left - ballSize - Math.abs(velX);
     }
 
     if (
@@ -376,7 +376,7 @@ function checkCollisions() {
         ballCenterY >= navOffets.bottom
     ) {
         velY *= -1;
-        ballY = navOffets.bottom + 1;
+        ballY = navOffets.bottom + Math.abs(velY);
         highlightClick()
         setTimeout(() => {
             highlightReset()
@@ -388,7 +388,7 @@ function checkCollisions() {
         ballCenterX >= navOffets.right
     ) {
         velX *= -1;
-        ballX = navOffets.right + 3;
+        ballX = navOffets.right + Math.abs(velX);
         highlightClick()
         setTimeout(() => {
             highlightReset()
@@ -399,7 +399,7 @@ function checkCollisions() {
         ballCenterX <= navOffets.left
     ) {
         velX *= -1;
-        ballX = navOffets.left - ballSize - 3;
+        ballX = navOffets.left - ballSize - Math.abs(velX);
         highlightClick()
         setTimeout(() => {
             highlightReset()
