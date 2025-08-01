@@ -235,8 +235,8 @@ function highlightReset() {
 }
 
 function highlightClick() {
-    velX += 1
-    velY += 1
+    velX += velX > 0 ? 1 : -1;
+    velY += velY > 0 ? 1 : -1;
     elements[0].style.transform = "scale(1.15) translateX(-50%) translateY(-50%)"
     elements[1].style.transform = "scale(1.25) translateX(-50%) translateY(-50%)"
     for (let i = 0; i < elements.length; i++) {
