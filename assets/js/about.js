@@ -186,6 +186,9 @@ elements[0].style.height = navOffets.height + 'px';
 elements[1].style.width = navOffets.width + 'px';
 elements[1].style.height = navOffets.height + 'px';
 
+let ballX, ballY, velX, velY;
+let gameInterval = null;
+
 function highlightReset() {
     for (let i = 0; i < elements.length; i++) {
         const e = elements[i];
@@ -196,6 +199,8 @@ function highlightReset() {
 }
 
 function highlightClick() {
+    velX += 1
+    velY += 1
     elements[0].style.transform = "scale(1.15) translateX(-50%) translateY(-50%)"
     elements[1].style.transform = "scale(1.25) translateX(-50%) translateY(-50%)"
     for (let i = 0; i < elements.length; i++) {
@@ -205,9 +210,6 @@ function highlightClick() {
 }
 
 highlightReset()
-
-let ballX, ballY, velX, velY;
-let gameInterval = null;
 
 function setPaddlePosition(x) {
     paddleX = Math.max(0, Math.min(window.innerWidth - paddleWidth, x));
