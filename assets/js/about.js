@@ -224,10 +224,10 @@ function startGame() {
     setPaddlePosition(paddleX);
     // nav.style.transform = "scale(1.5) translateY(25%)"
 
-    ballX = window.innerWidth / 2;
-    ballY = window.innerHeight / 2;
-    velX = 4;
-    velY = 5;
+    ballX = 10
+    ballY = 10
+    velX = 10;
+    velY = 7;
     gameInterval = setInterval(gameLoop, 10);
 }
 
