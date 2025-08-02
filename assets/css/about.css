@@ -71,6 +71,10 @@ main {
     padding-bottom: 0;
 }
 
+.awards .card-content{
+    padding-bottom: 0 !important;
+}
+
 .spotify {
     grid-column: 1 / span 8;
     grid-row: 9 / span 4;
@@ -135,7 +139,7 @@ main {
     align-items: center;
 }
 
-.heading svg{
+.heading svg {
     margin-right: 0.5vw;
 }
 
@@ -220,7 +224,7 @@ main {
 
 .achievment>.content>.desc {
     color: rgba(0, 0, 0, 0.8);
-    font-size: 05.8rem;
+    font-size: 0.8rem;
 }
 
 .techstackContainer {
@@ -363,7 +367,7 @@ main {
 }
 
 .linkedin .card-content,
-.github .card-content{
+.github .card-content {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -396,7 +400,8 @@ main {
 }
 
 
-.spotify, .spotify .card-content {
+.spotify,
+.spotify .card-content {
     display: flex;
     flex-direction: row;
     justify-content: start;
@@ -433,7 +438,7 @@ main {
     color: rgba(255, 255, 255, 0.75);
 }
 
-.keyboard > .card-content {
+.keyboard>.card-content {
     display: grid;
     grid-template-columns: repeat(58, 1fr);
     grid-template-rows: repeat(6, 1fr);
@@ -758,27 +763,34 @@ main {
     z-index: 9999;
 }
 
-.playBar:hover{
+.playBar .card-content {
+
+    transition: width 100ms ease-out, border 300ms ease-out, background 300ms ease-out;
+}
+
+.playBar:hover .card-content {
     background: whitesmoke !important;
     color: black;
 }
-.playBar:hover svg{
+
+.playBar:hover .card-content svg {
     filter: invert(0);
 }
 
-.playBar svg{
+.playBar .card-content svg {
     margin-left: 0.5vh;
     height: 0.8rem;
     filter: invert(1);
 }
 
-.options{
+.options {
     position: absolute !important;
     z-index: 3 !important;
     background: rgb(0, 0, 0);
 }
 
-.highlight1, .highlight2{
+.highlight1,
+.highlight2 {
     width: 10vw;
     height: 10vh;
     position: absolute;
@@ -791,25 +803,25 @@ main {
     transition: all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.highlight1{
+.highlight1 {
     background: rgba(255, 255, 255, 0.25);
     z-index: 2;
 }
 
-.highlight2{
+.highlight2 {
     background: rgba(255, 255, 255, 0.5);
     z-index: 1;
 }
 
-.github{
+.github {
     z-index: 9999;
 }
 
-.background{
+.background {
     font-size: 1.25rem;
 }
 
-.backgroundContent{
+.backgroundContent {
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -817,7 +829,7 @@ main {
     align-items: start;
 }
 
-.card-content{
+.card-content {
     /* width: 100%;
     height: 100%; */
     display: flex;
@@ -828,7 +840,7 @@ main {
     box-sizing: border-box;
 }
 
-.playBar > .card-content{
+.playBar>.card-content {
     justify-content: center;
     align-items: center;
     flex-direction: row;
@@ -836,62 +848,59 @@ main {
 
 /* -------- cards  glow -------- */
 
-#cards:hover > .card::after {
-  opacity: 1;
+#cards:hover>.card::after {
+    opacity: 1;
 }
 
-#cards:hover > .gridItem .card::after {
-  opacity: 1;
+#cards:hover>.gridItem .card::after {
+    opacity: 1;
 }
 
 .card {
-  background-color: #101010;
-  position: relative; 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    background-color: #101010;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .card:hover::before {
-  opacity: 1;
+    opacity: 1;
 }
 
 .card::before,
 .card::after {
-  border-radius: inherit;
-  content: "";
-  height: 100%;
-  left: 0px;
-  opacity: 0;
-  position: absolute;
-  top: 0px;
-  transition: opacity 500ms;
-  width: 100%;
+    border-radius: inherit;
+    content: "";
+    height: 100%;
+    left: 0px;
+    opacity: 0;
+    position: absolute;
+    top: 0px;
+    transition: opacity 500ms;
+    width: 100%;
+    pointer-events: none;
 }
 
 .card::before {
-  background: radial-gradient(
-    800px circle at var(--mouse-x) var(--mouse-y), 
-    rgba(255, 255, 255, 0.06),
-    transparent 40%
-  );
-  z-index: 3;
+    background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y),
+            rgba(255, 255, 255, 0.06),
+            transparent 40%);
+    z-index: 3;
 }
 
-.card::after {  
-  background: radial-gradient(
-    600px circle at var(--mouse-x) var(--mouse-y), 
-    rgba(255, 255, 255, 0.4),
-    transparent 40%
-  );
-  z-index: 1;
+.card::after {
+    background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y),
+            rgba(255, 255, 255, 0.4),
+            transparent 40%);
+    z-index: 1;
 }
 
-.card > .card-content {
-  position: absolute;
-  background-color: #101010;
-  border-radius: inherit;
-  inset: 1px;
-  padding: 2vh;
-  z-index: 2;
+.card>.card-content {
+    position: absolute;
+    background-color: #101010;
+    border-radius: inherit;
+    inset: 1px;
+    padding: 2vh;
+    z-index: 2;
 }

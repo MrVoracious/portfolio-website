@@ -165,6 +165,7 @@ setInterval(loadSpotify, 30000);
 
 const playBar = document.getElementById("playBar");
 const github = document.getElementById("github");
+const githubContent = document.getElementById("githubContent");
 const githubOffset = github.getBoundingClientRect()
 const ball = document.getElementById("github");
 const nav = document.getElementById("options");
@@ -208,7 +209,7 @@ function resetGithub(transition) {
     github.style.top = gitTop + "px"
     github.style.height = gitHeight + "px"
     github.style.width = gitWidth + "px"
-    github.style.background = "#101010"
+    githubContent.style.background = "#101010"
     github.style.borderRadius = 20 + "px"
 }
 
@@ -221,7 +222,8 @@ function gitBall(transition) {
     }
     github.style.height = ballSize + "px"
     github.style.width = ballSize + "px"
-    github.style.background = "#ffffff"
+    // github.style.background = "#ffffff"
+    githubContent.style.background = "#ffffff"
     github.style.borderRadius = 100000 + "px"
 }
 
