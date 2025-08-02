@@ -375,8 +375,8 @@ main {
 .linkedin .card-content img,
 .github .card-content img {
     filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7487%) hue-rotate(296deg) brightness(104%) contrast(103%);
-    height: 4.77vh;
-    width: 4.77vh;
+    height: 4vh;
+    width: 4vh;
 }
 
 .linkedin .card-content,
