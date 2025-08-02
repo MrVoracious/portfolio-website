@@ -99,6 +99,18 @@ main {
 .contact {
     grid-column: 15 / span 6;
     grid-row: 7 / span 2;
+    cursor: pointer;
+}
+
+.contact .card-content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.contact .card-content svg{
+    height: 1.5rem;
+    fill: white;
 }
 
 .stack {
