@@ -113,7 +113,7 @@ main {
     grid-row: 9 / span 8;
 }
 
-.minilabs {
+.background {
     grid-column: 26 / span 11;
     grid-row: 9 / span 10;
 }
@@ -126,10 +126,17 @@ main {
 .heading {
     border: 1px solid var(--border);
     border-radius: 10000px;
-    padding: 0.5vw 1vw;
+    padding: 0.625vw 1vw;
     background: black;
     margin-bottom: 2vh;
     font-size: 0.9rem;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.heading svg{
+    margin-right: 0.5vw;
 }
 
 .center {
@@ -213,7 +220,7 @@ main {
 
 .achievment>.content>.desc {
     color: rgba(0, 0, 0, 0.8);
-    font-size: 0.8rem;
+    font-size: 05.8rem;
 }
 
 .techstackContainer {
@@ -349,10 +356,18 @@ main {
     cursor: pointer;
 }
 
-.linkedin img,
-.github img {
+.linkedin .card-content img,
+.github .card-content img {
     filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7487%) hue-rotate(296deg) brightness(104%) contrast(103%);
-    height: calc(100% - 3vh);
+    height: 4.77vh;
+}
+
+.linkedin .card-content,
+.github .card-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }
 
 .spotify:hover .spotifyLogo img {
@@ -381,7 +396,7 @@ main {
 }
 
 
-.spotify {
+.spotify, .spotify .card-content {
     display: flex;
     flex-direction: row;
     justify-content: start;
@@ -418,11 +433,7 @@ main {
     color: rgba(255, 255, 255, 0.75);
 }
 
-.keyboard {
-    display: grid;
-}
-
-.keyboard {
+.keyboard > .card-content {
     display: grid;
     grid-template-columns: repeat(58, 1fr);
     grid-template-rows: repeat(6, 1fr);
@@ -669,7 +680,7 @@ main {
     cursor: pointer;
 }
 
-.wpm::after {
+.bgWpm {
     position: absolute;
     content: "106";
     left: 50%;
@@ -727,10 +738,11 @@ main {
     overflow: visible;
     background: none;
     border: none;
+    align-items: start;
 }
 
-#playBar {
-    position: absolute;
+.playBar {
+    position: absolute !important;
     width: 200px;
     height: 60px;
     border: 1px solid var(--border);
@@ -744,6 +756,20 @@ main {
     cursor: pointer;
     transition: width 100ms ease-out, border 300ms ease-out, background 300ms ease-out;
     z-index: 9999;
+}
+
+.playBar:hover{
+    background: whitesmoke !important;
+    color: black;
+}
+.playBar:hover svg{
+    filter: invert(0);
+}
+
+.playBar svg{
+    margin-left: 0.5vh;
+    height: 0.8rem;
+    filter: invert(1);
 }
 
 .options{
@@ -777,4 +803,95 @@ main {
 
 .github{
     z-index: 9999;
+}
+
+.background{
+    font-size: 1.25rem;
+}
+
+.backgroundContent{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: start;
+}
+
+.card-content{
+    /* width: 100%;
+    height: 100%; */
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    /* background: #101010; */
+    box-sizing: border-box;
+}
+
+.playBar > .card-content{
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+/* -------- cards  glow -------- */
+
+#cards:hover > .card::after {
+  opacity: 1;
+}
+
+#cards:hover > .gridItem .card::after {
+  opacity: 1;
+}
+
+.card {
+  background-color: #101010;
+  position: relative; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card::before,
+.card::after {
+  border-radius: inherit;
+  content: "";
+  height: 100%;
+  left: 0px;
+  opacity: 0;
+  position: absolute;
+  top: 0px;
+  transition: opacity 500ms;
+  width: 100%;
+}
+
+.card::before {
+  background: radial-gradient(
+    800px circle at var(--mouse-x) var(--mouse-y), 
+    rgba(255, 255, 255, 0.06),
+    transparent 40%
+  );
+  z-index: 3;
+}
+
+.card::after {  
+  background: radial-gradient(
+    600px circle at var(--mouse-x) var(--mouse-y), 
+    rgba(255, 255, 255, 0.4),
+    transparent 40%
+  );
+  z-index: 1;
+}
+
+.card > .card-content {
+  position: absolute;
+  background-color: #101010;
+  border-radius: inherit;
+  inset: 1px;
+  padding: 2vh;
+  z-index: 2;
 }
