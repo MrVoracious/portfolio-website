@@ -45,13 +45,13 @@ main {
 
 .name {
     width: 100vw;
-    height: 40vh;
+    height: max-content;
     position: absolute;
     bottom: 0;
     left: 0;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     box-sizing: border-box;
 }
 
@@ -158,6 +158,11 @@ main {
 .char {
     display: inline-block;
     transition: filter 0.3s ease;
+}
+
+#text{
+    font-size: calc(100vw * 0.192);
+    height: calc((100vw * 0.192) + 1vw);
 }
 
 .char:nth-child(5) {

@@ -1,28 +1,3 @@
-function fitTextToWidth() {
-  const container = document.getElementById('container');
-  const text = document.getElementById('text');
-
-  let fontSize = 248;
-  text.style.fontSize = fontSize + 'px';
-
-  function grow() {
-    if (text.scrollWidth < (container.clientWidth - 50) && fontSize < 500) {
-      fontSize++;
-      text.style.fontSize = fontSize + 'px';
-      grow()
-    } else {
-      container.style.height = fontSize + 'px'
-    }
-  }
-
-  grow()
-}
-
-fitTextToWidth()
-
-window.onload = fitTextToWidth;
-window.onresize = fitTextToWidth;
-
 document.querySelectorAll('.char').forEach(span => {
   const popup = span.querySelector('.popup');
   if (popup) {
