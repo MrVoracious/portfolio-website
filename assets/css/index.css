@@ -59,7 +59,7 @@ main {
     position: absolute;
     top: 0;
     left: 0;
-    transform: translateY(-100%);
+    transform: translateY(-75%) !important;
     width: 100%;
     display: flex;
     padding: 0 25px;

@@ -773,6 +773,8 @@ main {
     cursor: pointer;
     transition: width 100ms ease-out, border 300ms ease-out, background 300ms ease-out;
     z-index: 9999;
+    will-change: transform;
+    left: 0;
 }
 
 .playBar .card-content {
@@ -826,6 +828,10 @@ main {
 
 .github {
     z-index: 9999;
+    will-change: transform !important;
+    backface-visibility: hidden !important;
+    contain: layout style paint !important;
+    transform: translateZ(0) !important;
 }
 
 .background {
@@ -914,4 +920,10 @@ main {
     inset: 1px;
     padding: 2vh;
     z-index: 2;
+}
+
+.highlight-active {
+    transform: scale(1.2) translateX(-50%) translateY(-50%);
+    opacity: 1;
+    transition: transform 0.2s ease, opacity 0.2s ease;
 }

@@ -1,16 +1,3 @@
-document.querySelectorAll('.char').forEach(span => {
-  const popup = span.querySelector('.popup');
-  if (popup) {
-    span.addEventListener('mouseenter', () => {
-      const rotate = popup.getAttribute('data-rotate');
-      popup.style.transform = `scale(1) rotate(${rotate})`;
-    });
-    span.addEventListener('mouseleave', () => {
-      popup.style.transform = 'scale(0) rotate(0deg)';
-    });
-  }
-});
-
 anime.timeline()
   .add({
     targets: '.char',

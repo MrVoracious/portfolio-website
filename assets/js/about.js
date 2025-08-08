@@ -162,132 +162,126 @@ loadSpotify();
 setInterval(loadSpotify, 30000);
 
 
-
 const playBar = document.getElementById("playBar");
 const github = document.getElementById("github");
+github.style.willChange = "transform";
+github.style.backfaceVisibility = "hidden";
+github.style.transform = "translateZ(0)";
 const githubContent = document.getElementById("githubContent");
-const githubOffset = github.getBoundingClientRect()
+const githubOffset = github.getBoundingClientRect();
 const ball = document.getElementById("github");
 const nav = document.getElementById("options");
-const funContainer = document.getElementById("funContainer")
+const funContainer = document.getElementById("funContainer");
 let paddleWidth = 200;
 const paddleHeight = funContainer.getBoundingClientRect().height;
 playBar.style.height = paddleHeight + 'px';
 playBar.style.width = funContainer.getBoundingClientRect().width + 'px';
 let paddleX = funContainer.getBoundingClientRect().left;
-let paddleOffets
-let ballOffets;
-let navOffets = nav.getBoundingClientRect()
+let navOffets = nav.getBoundingClientRect();
 const ballSize = 40;
 const paddleSpeed = 100;
 let gameStarted = false;
-const highlight2 = document.getElementById("highlight2")
-const highlight1 = document.getElementById("highlight1")
-const elements = [highlight1, highlight2]
-elements[0].style.width = navOffets.width + 'px';
-elements[0].style.height = navOffets.height + 'px';
-elements[1].style.width = navOffets.width + 'px';
-elements[1].style.height = navOffets.height + 'px';
+const highlight2 = document.getElementById("highlight2");
+const highlight1 = document.getElementById("highlight1");
+const elements = [highlight1, highlight2];
+elements.forEach(el => {
+    el.style.width = navOffets.width + 'px';
+    el.style.height = navOffets.height + 'px';
+});
 
 let ballX, ballY, velX, velY;
-let gameInterval = null;
+let animationFrame = null;
 
-const gitHeight = githubOffset.height
-const gitWidth = githubOffset.width
-const gitLeft = githubOffset.left
-const gitTop = githubOffset.top
+const gitHeight = githubOffset.height;
+const gitWidth = githubOffset.width;
+const gitLeft = githubOffset.left;
+const gitTop = githubOffset.top;
 
 function resetGithub(transition) {
     if (transition) {
-        github.style.transition = "left 300ms ease-out, top 300ms ease-out, width 300ms ease-out, height 300ms ease-out, background 300ms ease-out, border-radius 300ms ease-out"
+        github.style.transition = "left 300ms ease-out, top 300ms ease-out, width 300ms ease-out, height 300ms ease-out, background 300ms ease-out, border-radius 300ms ease-out";
         setTimeout(() => {
-            github.style.transition = "none"
+            github.style.transition = "none";
         }, 300);
     }
-    github.style.position = "absolute"
-    github.style.left = gitLeft + "px"
-    github.style.top = gitTop + "px"
-    github.style.height = gitHeight + "px"
-    github.style.width = gitWidth + "px"
-    githubContent.style.background = "#101010"
-    github.style.borderRadius = 20 + "px"
+    github.style.position = "absolute";
+    github.style.left = gitLeft + "px";
+    github.style.top = gitTop + "px";
+    github.style.height = gitHeight + "px";
+    github.style.width = gitWidth + "px";
+    githubContent.style.background = "#101010";
+    github.style.borderRadius = "20px";
 }
 
 function gitBall(transition) {
     if (transition) {
-        github.style.transition = "left 300ms ease-out, top 300ms ease-out, width 300ms ease-out, height 300ms ease-out, background 300ms ease-out, border-radius 300ms ease-out"
+        github.style.transition = "left 300ms ease-out, top 300ms ease-out, width 300ms ease-out, height 300ms ease-out, background 300ms ease-out, border-radius 300ms ease-out";
         setTimeout(() => {
-            github.style.transition = "none"
+            github.style.transition = "none";
         }, 300);
     }
-    github.style.height = ballSize + "px"
-    github.style.width = ballSize + "px"
-    // github.style.background = "#ffffff"
-    githubContent.style.background = "#ffffff"
-    github.style.borderRadius = 100000 + "px"
+    github.style.height = ballSize + "px";
+    github.style.width = ballSize + "px";
+    githubContent.style.background = "#ffffff";
+    github.style.borderRadius = "100000px";
 }
 
 function highlightReset() {
-    for (let i = 0; i < elements.length; i++) {
-        const e = elements[i];
-        e.style.transform = "translateX(-50%) translateY(-50%) scale(1)"
-        e.style.opacity = '0';
-
-    }
+    elements.forEach(e => {
+        e.classList.remove("highlight-active");
+    });
 }
 
 function highlightClick() {
     velX += velX > 0 ? 1 : -1;
     velY += velY > 0 ? 1 : -1;
-    elements[0].style.transform = "scale(1.15) translateX(-50%) translateY(-50%)"
-    elements[1].style.transform = "scale(1.25) translateX(-50%) translateY(-50%)"
-    for (let i = 0; i < elements.length; i++) {
-        const e = elements[i];
-        e.style.opacity = '1';
-    }
+    elements.forEach(e => {
+        e.classList.add("highlight-active");
+    });
+    setTimeout(() => {
+        highlightReset();
+    }, 300);
 }
-
-highlightReset()
 
 function setPaddlePosition(x) {
     paddleX = Math.max(0, Math.min(window.innerWidth - paddleWidth, x));
-    playBar.style.left = paddleX + "px";
+    playBar.style.transform = `translateX(${paddleX}px)`;
 }
+
 function randInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-resetGithub(false)
+resetGithub(false);
+
 function startGame() {
-    gitBall(true)
+    gitBall(true);
     gameStarted = true;
     playBar.textContent = "";
     paddleWidth = 200;
     paddleX = funContainer.getBoundingClientRect().left + (funContainer.getBoundingClientRect().width / 2) - paddleWidth / 2;
     playBar.style.width = paddleWidth + 'px';
     setPaddlePosition(paddleX);
-    playBar.style.border = "1px solid #545454"
-    playBar.style.background = "#ffffffff"
+    playBar.style.border = "1px solid #545454";
+    playBar.style.background = "#ffffffff";
     velX = Math.random() < 0.5 ? randInt(-10, -5) : randInt(5, 10);
     velY = Math.random() < 0.5 ? randInt(-3, -2) : randInt(2, 3);
 
-    setTimeout(() => {
-        ballX = ball.getBoundingClientRect().left
-        ballY = ball.getBoundingClientRect().top
-        gameInterval = setInterval(gameLoop, 10);
-    }, 300);
+    const ballRect = ball.getBoundingClientRect();
+    ballX = ballRect.left;
+    ballY = ballRect.top;
+
+    animationFrame = requestAnimationFrame(gameLoop);
 }
 
 function moveBall() {
     const steps = Math.ceil(Math.max(Math.abs(velX), Math.abs(velY)));
-
     const stepX = velX / steps;
     const stepY = velY / steps;
 
     for (let i = 0; i < steps; i++) {
         ballX += stepX;
         ballY += stepY;
-
         ball.style.left = ballX + "px";
         ball.style.top = ballY + "px";
         checkCollisions();
@@ -295,67 +289,58 @@ function moveBall() {
 }
 
 function gameLoop() {
-
-    // Bounce off walls
     if (ballX <= 0 || ballX + ballSize >= window.innerWidth) velX *= -1;
     if (ballY <= 0) velY *= -1;
 
-    // Game Over
     if (ballY > window.innerHeight) {
-        clearInterval(gameInterval);
+        cancelAnimationFrame(animationFrame);
         alert("Game Over");
         resetGame();
         return;
     }
 
-    moveBall()
+    moveBall();
+    animationFrame = requestAnimationFrame(gameLoop);
 }
 
 function resetGame() {
     gameStarted = false;
-    // ball.style.display = "none";
-    resetGithub(true)
+    resetGithub(true);
     playBar.innerHTML = `
-                    <div class="card-content">
-                        PLAY
-                        <svg xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
-                            <path
-                                d="M187.2 100.9C174.8 94.1 159.8 94.4 147.6 101.6C135.4 108.8 128 121.9 128 136L128 504C128 518.1 135.5 531.2 147.6 538.4C159.7 545.6 174.8 545.9 187.2 539.1L523.2 355.1C536 348.1 544 334.6 544 320C544 305.4 536 291.9 523.2 284.9L187.2 100.9z" />
-                        </svg>
-                    </div>
+        <div class="card-content">
+            PLAY
+            <svg xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 640 640">
+                <path d="M187.2 100.9C174.8 94.1 159.8 94.4 147.6 101.6C135.4 108.8 128 121.9 128 136L128 504C128 518.1 135.5 531.2 147.6 538.4C159.7 545.6 174.8 545.9 187.2 539.1L523.2 355.1C536 348.1 544 334.6 544 320C544 305.4 536 291.9 523.2 284.9L187.2 100.9z"/>
+            </svg>
+        </div>
     `;
     playBar.style.width = funContainer.getBoundingClientRect().width + 'px';
-    setPaddlePosition(funContainer.getBoundingClientRect().left)
-    gameInterval = null;
-    playBar.style.border = "1px solid var(--border)"
-    playBar.style.background = "#101010"
+    setPaddlePosition(funContainer.getBoundingClientRect().left);
+    playBar.style.border = "1px solid var(--border)";
+    playBar.style.background = "#101010";
 }
 
 playBar.addEventListener("click", () => {
-    if (!gameInterval) startGame();
+    if (!animationFrame) startGame();
 });
 
 document.addEventListener("mousemove", (event) => {
-    const mouseX = event.clientX;
     if (!gameStarted) return;
-    setPaddlePosition(mouseX - (paddleWidth / 2));
+    setPaddlePosition(event.clientX - paddleWidth / 2);
 });
 
-// Set initial position
 setPaddlePosition(paddleX);
 
-
 function checkCollisions() {
-    paddleOffets = playBar.getBoundingClientRect()
-    ballOffets = ball.getBoundingClientRect()
-    navOffets = nav.getBoundingClientRect()
-    const paddleTop = paddleOffets.top
+    const paddleOffets = playBar.getBoundingClientRect();
+    const navOffets = nav.getBoundingClientRect();
+    const paddleTop = paddleOffets.top;
     const paddleBottom = paddleTop + paddleHeight;
-
     const ballBottom = ballY + ballSize;
     const ballCenterX = ballX + ballSize / 2;
     const ballCenterY = ballY + ballSize / 2;
+
     if (
         ballBottom >= paddleTop &&
         ballCenterX >= paddleX &&
@@ -366,58 +351,47 @@ function checkCollisions() {
         ballY = paddleTop - ballSize - Math.abs(velY);
     } else if (
         ballBottom >= paddleTop &&
-        ballOffets.left <= paddleOffets.right &&
+        ballX <= paddleOffets.right &&
         ballCenterX >= paddleOffets.right
     ) {
         velX *= -1;
         ballX = paddleOffets.right + Math.abs(velX);
     } else if (
         ballBottom >= paddleTop &&
-        ballOffets.right >= (paddleOffets.left) &&
-        ballCenterX <= (paddleOffets.left)
+        ballX + ballSize >= paddleOffets.left &&
+        ballCenterX <= paddleOffets.left
     ) {
         velX *= -1;
         ballX = paddleOffets.left - ballSize - Math.abs(velX);
     }
 
     if (
-        ballOffets.top <= navOffets.bottom &&
-        ballOffets.left >= navOffets.left &&
-        ballOffets.right <= navOffets.right &&
+        ballY <= navOffets.bottom &&
+        ballX >= navOffets.left &&
+        ballX + ballSize <= navOffets.right &&
         ballCenterY >= navOffets.bottom
     ) {
         velY *= -1;
         ballY = navOffets.bottom + Math.abs(velY);
-        highlightClick()
-        setTimeout(() => {
-            highlightReset()
-        }, 300);
-    }
-    else if (
-        ballOffets.top <= navOffets.bottom &&
-        ballOffets.left <= navOffets.right &&
+        highlightClick();
+    } else if (
+        ballY <= navOffets.bottom &&
+        ballX <= navOffets.right &&
         ballCenterX >= navOffets.right
     ) {
         velX *= -1;
         ballX = navOffets.right + Math.abs(velX);
-        highlightClick()
-        setTimeout(() => {
-            highlightReset()
-        }, 300);
+        highlightClick();
     } else if (
-        ballOffets.top <= navOffets.bottom &&
-        ballOffets.right >= navOffets.left &&
+        ballY <= navOffets.bottom &&
+        ballX + ballSize >= navOffets.left &&
         ballCenterX <= navOffets.left
     ) {
         velX *= -1;
         ballX = navOffets.left - ballSize - Math.abs(velX);
-        highlightClick()
-        setTimeout(() => {
-            highlightReset()
-        }, 300);
+        highlightClick();
     }
 }
-
 
 document.getElementById("cards").onmousemove = e => {
   for(const card of document.getElementsByClassName("card")) {
