@@ -13,7 +13,13 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Geist:wght@100..900&family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Space+Grotesk:wght@300..700&display=swap"
         rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+    </style>
 
 </head>
 
@@ -28,13 +34,10 @@
             <div class="highlight" id="highlight"></div>
         </div>
     </nav>
-    <div class="loader">
-        <div class="loadingGif"></div>
-    </div>
     <section class="contactDetails">
-        <div class="contactID"><span>@</span>lorem.ipsum</div>
+        <a class="contactID" href="https://www.instagram.com/vandit.kad/" target="_blank"><span>@</span>vandit_kad</a>
         <div class="divider"></div>
-        <div class="emailID">vanditkad<span>@</span>gmail.com</div>
+        <a class="emailID" href="mailto:vanditkad@gmail.com">vanditkad<span>@</span>gmail.com</a>
     </section>
     <main>
         <div class="heading">
@@ -49,13 +52,16 @@
             <form id="form">
                 <div class="line">
                     <div>My name is </div>
-                    <input type="search" name="search" placeholder="Your Full Name" class="name" id="fullName">
+                    <div class="input name"><input type="search" name="search" placeholder="Your Full Name"
+                            id="fullName"></div>
                     <div>and my mobile</div>
                 </div>
                 <div class="line">
-                    <input type="text" placeholder="+91 9999999999" class="number" id="number">
+                    <div class="input number"><input type="text" placeholder="+91 9999999999" class="number"
+                            id="number"></div>
                     <div>My email is </div>
-                    <input type="email" placeholder="vanditkad@gmail.com" class="email" id="email">
+                    <div class="input email"><input type="email" placeholder="vanditkad@gmail.com" class="email"
+                            id="email"></div>
                 </div>
                 <div class="line msgLine">
                     <div class="msgHeading">Message</div>

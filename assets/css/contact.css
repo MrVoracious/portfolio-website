@@ -52,7 +52,10 @@ main {
     text-transform: uppercase;
     font-weight: 800;
     -webkit-text-stroke: 0.75px white;
-    color: transparent;
+}
+
+.contactID:hover, .emailID:hover{
+    color: rgba(255, 255, 255, 1);
 }
 
 .emailID{
@@ -69,6 +72,9 @@ main {
     display: flex;
     justify-content: start;
     align-items: center;
+    color: rgba(255, 255, 255, 0);
+    transition: color 500ms ease-out;
+    cursor: pointer;
 }
 
 .divider{
@@ -153,16 +159,44 @@ form{
     background: rgb(125, 125, 125);
 }
 
-.line > input{
+.line > .input{
 
     box-sizing: border-box;
-    background-color: transparent;
     padding: 0;
-    font-size: 1.75rem;
-    border: none;
     height: 2rem;
     margin: 0 1ch;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 100%;
+}
+
+.input::after{
+    position: absolute;
+    left: 0;
+    bottom: -0.25vh;
+    border-radius: 1000px;
+    content: "";
+    width: 0%;
+    height: 1px;
+    background: #ffffff;
+    z-index: 99999;
+    transition: width 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.input:focus-within::after {
+  width: 100%;
+}
+
+.input > input{
+    width: 100%;
+    height: 100%;
+    border: none;
     color: rgb(174, 174, 174);
+    background-color: transparent;
+    font-size: 1.75rem;
+    height: 2rem;
 }
 
 input::-webkit-search-cancel-button,
@@ -175,12 +209,15 @@ input::-webkit-clear-button {
 }
 
 .name{
-    width: 45%;
+    width: 45% !important;
 }
 
 .email{
     margin-right: 0 !important;
-    width: 35%;
+    width: 35% !important;
+}
+.email > input{
+    width: 100% !important;
 }
 
 .number{
@@ -231,27 +268,4 @@ input:focus, textarea:focus{
 .submitBTN:hover{
     background: white;
     color: black;
-}
-
-.loader{
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    left: 0;
-    top: 0;
-    z-index: 9999999;
-    background: #151515;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    display: none;
-}
-
-.loadingGif{
-    width: 250px;
-    aspect-ratio: 1 / 1;
-    background: url(../images/loading+animation.gif);
-    background-position: center;
-    background-size: cover;
-    filter: invert(0) grayscale(1);
 }
