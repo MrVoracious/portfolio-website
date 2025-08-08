@@ -305,6 +305,7 @@ function gameLoop() {
 
 function resetGame() {
     gameStarted = false;
+    animationFrame = null;
     resetGithub(true);
     playBar.innerHTML = `
         <div class="card-content">
