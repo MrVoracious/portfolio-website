@@ -82,6 +82,29 @@ main {
     position: relative;
 }
 
+
+
+.spotify > .card-content::after{
+    position: absolute;
+    content: "";
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    border-radius: 15px;
+    width: calc(100% + 2px);
+    height: calc(100% + 2px);
+    background-color: #151515;
+    background-image: url("../images/loading+animation.gif");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50%;
+    filter: grayscale(1) contrast(1);
+    z-index: 9999;
+    opacity: var(--after-opacity, 1);
+    pointer-events: none;
+    transition: opacity 150ms ease-in-out;
+}
+
 .wpm {
     grid-column: 1 / span 8;
     grid-row: 13 / span 6;
@@ -133,7 +156,10 @@ main {
 }
 
 .contact:hover svg{
-    transform: rotate(-405deg);
+    transform: rotate(-45deg);
+}
+.contact svg:hover{
+    transform: rotate(-45deg) scale(1.25);
 }
 
 .stack {
@@ -293,15 +319,21 @@ main {
     background: linear-gradient(to right, #101010, transparent, #101010);
 }
 
-.techstackContainer>.stackScroller>img {
-    height: 75px;
-    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7487%) hue-rotate(296deg) brightness(104%) contrast(103%);
+.techstackContainer>.stackScroller>a {
+    height: 57.5px;
     margin: 0 1vw;
 }
-
-.techstackContainer>.stackScroller>img.color {
-    filter: grayscale(1) contrast(2);
+.techstackContainer>.stackScroller>a>img {
+    height: 100%;
+    filter: grayscale(1) contrast(1);
+    transition: filter 150ms ease-out;
 }
+
+.techstackContainer>.stackScroller>a:hover img {
+    filter: none;
+}
+
+
 
 @keyframes scrollLeft {
     0% {

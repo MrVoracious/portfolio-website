@@ -132,6 +132,10 @@ fetch(`https://api.github.com/users/${githubUsername}/events/public`)
     });
 
 function loadSpotify() {
+    const spotifyLoader = document.getElementById("spotifyCardContent")
+    setTimeout(() => {
+        spotifyLoader.style.setProperty('--after-opacity', 0);
+    }, 1000);
     fetch("https://portfolio-api-server-beta.vercel.app/api/now-playing")
         .then(res => res.json())
         .then(data => {
@@ -395,12 +399,12 @@ function checkCollisions() {
 }
 
 document.getElementById("cards").onmousemove = e => {
-  for(const card of document.getElementsByClassName("card")) {
-    const rect = card.getBoundingClientRect(),
-          x = e.clientX - rect.left,
-          y = e.clientY - rect.top;
+    for (const card of document.getElementsByClassName("card")) {
+        const rect = card.getBoundingClientRect(),
+            x = e.clientX - rect.left,
+            y = e.clientY - rect.top;
 
-    card.style.setProperty("--mouse-x", `${x}px`);
-    card.style.setProperty("--mouse-y", `${y}px`);
-  };
+        card.style.setProperty("--mouse-x", `${x}px`);
+        card.style.setProperty("--mouse-y", `${y}px`);
+    };
 }
