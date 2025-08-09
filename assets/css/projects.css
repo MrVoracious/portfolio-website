@@ -220,6 +220,7 @@ nav{
 
 .no-blur {
     filter: none !important;
+    transform: scale(1.1);
     border: 2px solid #9C9C9C;
     background: linear-gradient(145deg, #1f1f1f, #141414);
     box-shadow:
