@@ -133,3 +133,37 @@ proLogos.forEach(logo => {
 document.addEventListener('click', () => {
     removeAllBlur();
 });
+
+
+const body = document.body
+const img = document.querySelector('.ctrlImg');
+
+body.addEventListener('mousemove', (e) => {
+    const rect = body.getBoundingClientRect();
+
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    let normX = (x - centerX) / centerX;
+    let normY = (y - centerY) / centerY;
+
+    normY *= -1;
+
+    const scaleX = 1 - Math.abs(normX);
+    const scaleY = 1 - Math.abs(normY);
+
+    const rotateY = normX * 20 * scaleY;
+    const rotateX = normY * 20 * scaleX;
+
+    img.style.transform = `translateX(-50%) translateY(-50%) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+});
+
+container.addEventListener('mouseleave', () => {
+    img.style.transform = `rotateX(0deg) rotateY(0deg)`;
+});
+
+function showPreview() {
+    img.style.width = "50vw";
+}
