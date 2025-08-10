@@ -1,10 +1,12 @@
 const achievmentDivs = document.getElementsByClassName("achievment")
 const achievmentsContainer = document.getElementById("achievmentsContainer")
+const helper = document.getElementById("helper")
+
 function styleAchievments() {
     for (let i = 0; i < achievmentDivs.length; i++) {
         const e = achievmentDivs[i];
         achievmentsContainer.scrollTop = 0;
-        achievmentsContainer.style.overflow = "hidden"
+        achievmentsContainer.style.overflow = "visible"
         e.style.zIndex = `${achievmentDivs.length - i}`;
         if (i > 0) {
             e.style.top = `${(i * 12.5) + 15}%`;
@@ -18,6 +20,7 @@ function styleAchievments() {
     }
 }
 function achievmentMouseIn() {
+    helper.style.pointerEvents = "all"
     for (let i = 0; i < achievmentDivs.length; i++) {
         const e = achievmentDivs[i];
         if (i > 0) {
@@ -28,11 +31,11 @@ function achievmentMouseIn() {
 function achievmentMouseOut() {
     styleAchievments()
 }
-
 function achievmentClick() {
+    helper.style.pointerEvents = "none"
     for (let i = 0; i < achievmentDivs.length; i++) {
         const e = achievmentDivs[i];
-        achievmentsContainer.style.overflow = "overlay"
+        achievmentsContainer.style.overflow = "scroll"
         if (i > 0) {
             e.style.top = `calc(${75 * i}px + ${0.5 * i}vh)`;
             e.style.filter = `brightness(1)`;
@@ -135,7 +138,7 @@ function loadSpotify() {
     const spotifyLoader = document.getElementById("spotifyCardContent")
     setTimeout(() => {
         spotifyLoader.style.setProperty('--after-opacity', 0);
-    }, 1000);
+    }, 1250);
     fetch("https://portfolio-api-server-beta.vercel.app/api/now-playing")
         .then(res => res.json())
         .then(data => {

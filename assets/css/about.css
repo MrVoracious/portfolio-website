@@ -223,10 +223,19 @@ main {
     justify-content: start;
     box-sizing: border-box;
     margin-top: 2vh;
-    overflow: hidden;
     scrollbar-color: var(--border) transparent;
     position: relative;
     cursor: pointer;
+}
+
+.helper{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 5;
 }
 
 .achievment {
@@ -249,6 +258,10 @@ main {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     z-index: 1;
 }
+.achievment:hover{
+    transform: translateY(-7.5px) scale(1) !important;
+    z-index: 5 !important;
+}
 
 .achievment>.icon {
     height: calc(100% - 1.5vw);
@@ -256,11 +269,23 @@ main {
     background: black;
     border-radius: calc(15px - 0.5vw);
     margin-right: 0.75vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.achievment>.icon>img{
+    height: 80%;
+    width: auto;
+}
+.holidayHacks{
+    height: auto !important;
+    width: 80% !important;
 }
 
 .content {
     width: 100%;
-    height: 50%;
+    height: calc(100% - 1.75vw);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -286,7 +311,11 @@ main {
 
 .achievment>.content>.desc {
     color: rgba(0, 0, 0, 0.8);
-    font-size: 0.8rem;
+    font-size: 0.75rem;
+}
+
+.desc > .link{
+    text-decoration: underline;
 }
 
 .techstackContainer {
