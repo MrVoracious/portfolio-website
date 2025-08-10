@@ -77,18 +77,14 @@ function applyBlur(activeLogo) {
             logo.classList.add('blur');
             logo.classList.remove('no-blur');
             if (urlContainer) {
-                urlContainer.style.height = '0';
-                urlContainer.style.width = '0';
+                urlContainer.classList.remove("urlContainerOpened")
             }
         } else {
             prologoActive = true
             logo.classList.remove('blur');
             logo.classList.add('no-blur');
             if (urlContainer) {
-                const urlCount = urlContainer.querySelectorAll('.url').length;
-                urlContainer.style.height = `${4.5 * urlCount}vh`;
-                urlContainer.style.opacity = '1';
-                urlContainer.style.width = 'calc(200% + 1vw + 6px)';
+                urlContainer.classList.add("urlContainerOpened")
             }
         }
     });

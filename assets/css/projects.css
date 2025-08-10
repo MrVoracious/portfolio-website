@@ -163,19 +163,25 @@ body {
 .urlContainer {
     position: absolute;
     z-index: 9999999;
-    left: -10%;
+    left: -2.5%;
     bottom: 0;
-    transform: translateY(calc(100% + 1vh)) scale(0.9090909091);
-    height: 0%;
-    width: 0;
+    transform-origin: top left;
+    transform: translateY(calc(100% + 1vh)) scale(0);
+    height: max-content;
+    width: calc(200% + 1vw + 6px);
     font-size: 0.9rem;
     border-radius: 12px;
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
     display: flex;
     flex-direction: column;
+    will-change: transform;
     transition: all 200ms cubic-bezier(0.165, 0.84, 0.44, 1);
     overflow: hidden;
+}
+
+.urlContainerOpened{
+    transform: translateY(calc(100% + 1vh)) scale(0.9090909091);
 }
 
 .url {
