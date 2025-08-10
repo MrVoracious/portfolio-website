@@ -109,8 +109,8 @@ function removeAllBlur() {
     document.querySelectorAll('.blur').forEach(el => el.classList.remove('blur'));
     document.querySelectorAll('.no-blur').forEach(el => el.classList.remove('no-blur'));
     document.querySelectorAll('.urlContainer').forEach(container => {
-        container.style.height = '0';
-        container.style.width = '0';
+        container.classList.remove("urlContainerOpened")
+
     });
 
     projectDiv.querySelectorAll('span').forEach(span => {
