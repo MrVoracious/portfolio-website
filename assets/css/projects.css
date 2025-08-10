@@ -254,14 +254,16 @@ nav{
 }
 
 .previewImg{
-    height: 0vh;
+    height: 55vh;
     width: auto;
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translateX(-50%) translateY(-50%);
+    transform-origin: left top;
+    scale: 0;
     transform-style: preserve-3d;
-    transition: height 300ms cubic-bezier(0.175, 0.885, 0.32, 1.1)
+    transition: scale 300ms cubic-bezier(0.175, 0.885, 0.32, 1.1)
 }
 
 .fakeNav{

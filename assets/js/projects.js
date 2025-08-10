@@ -146,7 +146,7 @@ function showPreview(e) {
     fakeNav.style.opacity = '1';
     fakeNavFlag = true
     img = document.getElementById(e)
-    img.style.height = "55vh";
+    img.style.scale = "1";
     const body = document.body
     body.addEventListener('mousemove', (e) => {
         const rect = body.getBoundingClientRect();
@@ -166,7 +166,7 @@ function showPreview(e) {
 
         const rotateY = normX * 20 * scaleY;
         const rotateX = normY * 20 * scaleX;
-
+        img.style.transformOrigin = "center center";
         img.style.transform = `translateX(-50%) translateY(-50%) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     });
 
@@ -175,5 +175,6 @@ fakeNav.addEventListener('click', (event) => {
     fakeNav.style.left = navOffets.right - 25 + 'px';
     fakeNav.style.opacity = '0';
     fakeNavFlag = false
-    img.style.height = "0vh";
+    img.style.transformOrigin = "left top";
+    img.style.scale = "0";
 });

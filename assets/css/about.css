@@ -226,6 +226,7 @@ main {
     scrollbar-color: var(--border) transparent;
     position: relative;
     cursor: pointer;
+    scroll-behavior: smooth !important;
 }
 
 .helper{
@@ -335,6 +336,11 @@ main {
     width: max-content;
     height: 100%;
     animation: scrollLeft 15s linear infinite;
+    animation-play-state: running;
+}
+
+.stackScroller:hover{
+    animation-play-state: paused;
 }
 
 .techstackContainer::after {
