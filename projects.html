@@ -19,13 +19,12 @@
 </head>
 
 <body>
-    <img src="assets/images/ctrlUI.png" alt="" class="ctrlImg">
     <div class="loader" id="loader">
         <div class="loadingGif"></div>
     </div>
     <img src="assets/images/noise.png" alt="noise" class="noise">
     <div class="blurDiv"></div>
-    <nav>
+    <nav id="nav">
         <div class="options" id="options">
             <a class="option" href="/">Home</a>
             <a class="option active" href="/projects">Projects</a>
@@ -55,7 +54,7 @@
                             </svg>
                         </div>
                     </a>
-                    <a class="url" onclick="showPreview()">
+                    <a class="url" onclick="showPreview('ctrlPreview')">
                         <div class="urlName">Preview</div>
                         <div class="urlIcon">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -142,6 +141,12 @@
             </div>
         </div>
     </main>
+    <div id="previewContainer">
+        <img src="assets/images/ctrlUI.png" alt="" class="previewImg" id="ctrlPreview">
+        <img src="assets/images/ctrlUI.png" alt="" class="previewImg" id="cryptPreview">
+        <img src="assets/images/ctrlUI.png" alt="" class="previewImg" id="bytePreview">
+        <div class="fakeNav" id="fakeNav">Close</div>
+    </div>
     <script src="assets/js/projects.js"></script>
     <script src="assets/js/nav.js"></script>
 </body>

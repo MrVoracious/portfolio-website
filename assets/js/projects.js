@@ -130,40 +130,54 @@ proLogos.forEach(logo => {
     });
 });
 
-document.addEventListener('click', () => {
-    removeAllBlur();
+const fakeNav = document.getElementById("fakeNav")
+let fakeNavFlag = false;
+document.addEventListener('click', (event) => {
+    if (!fakeNavFlag) {
+        removeAllBlur();
+    }
 });
+const navOptions = document.getElementById("options")
+let navOffets = navOptions.getBoundingClientRect()
+fakeNav.style.left = navOffets.right - 25 + 'px';
+fakeNav.style.top = navOffets.top + 'px';
+fakeNav.style.height = navOffets.height + 'px';
+let img;
 
+function showPreview(e) {
+    navOffets = navOptions.getBoundingClientRect()
+    fakeNav.style.left = navOffets.right + 5 + 'px';
+    fakeNav.style.opacity = '1';
+    fakeNavFlag = true
+    img = document.getElementById(e)
+    img.style.height = "55vh";
+    const body = document.body
+    body.addEventListener('mousemove', (e) => {
+        const rect = body.getBoundingClientRect();
 
-const body = document.body
-const img = document.querySelector('.ctrlImg');
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
 
-body.addEventListener('mousemove', (e) => {
-    const rect = body.getBoundingClientRect();
+        let normX = (x - centerX) / centerX;
+        let normY = (y - centerY) / centerY;
 
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
+        normY *= -1;
 
-    let normX = (x - centerX) / centerX;
-    let normY = (y - centerY) / centerY;
+        const scaleX = 1 - Math.abs(normX);
+        const scaleY = 1 - Math.abs(normY);
 
-    normY *= -1;
+        const rotateY = normX * 20 * scaleY;
+        const rotateX = normY * 20 * scaleX;
 
-    const scaleX = 1 - Math.abs(normX);
-    const scaleY = 1 - Math.abs(normY);
+        img.style.transform = `translateX(-50%) translateY(-50%) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
 
-    const rotateY = normX * 20 * scaleY;
-    const rotateX = normY * 20 * scaleX;
-
-    img.style.transform = `translateX(-50%) translateY(-50%) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-});
-
-container.addEventListener('mouseleave', () => {
-    img.style.transform = `rotateX(0deg) rotateY(0deg)`;
-});
-
-function showPreview() {
-    img.style.width = "50vw";
 }
+fakeNav.addEventListener('click', (event) => {
+    fakeNav.style.left = navOffets.right - 25 + 'px';
+    fakeNav.style.opacity = '0';
+    fakeNavFlag = false
+    img.style.height = "0vh";
+});
