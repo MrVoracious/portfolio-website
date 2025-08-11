@@ -40,7 +40,7 @@ main {
 @font-face {
     font-display: swap;
     font-family: "sterling";
-    src: url("../fonts/sterling.otf");
+    src: url("../fonts/sterling.woff2");
 }
 
 .name {
@@ -87,24 +87,24 @@ main {
     position: absolute;
     z-index: 2;
     left: 50%;
-    bottom: -130%;
+    top: 0%;
     opacity: 0.6;
-    transform: translateX(-50%) translateY(35%);
-    background-image: url(../images/whiteSun.png);
+    transform: translateX(-50%) translateY(100%);
+    background-image: url(../images/whiteSun.webp);
     background-position: center;
     background-size: cover;
-    animation: goUp 1.25s ease-out forwards;
+    animation: goUp 1.25s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
     filter: blur(200px);
     pointer-events: none;
 }
 
 @keyframes goUp {
     0% {
-        bottom: -130%;
+        transform: translateX(-50%) translateY(130%);
     }
 
     100% {
-        bottom: 100%;
+        transform: translateX(-50%) translateY(-65%);
     }
 }
 
@@ -128,7 +128,7 @@ main {
     width: 100vw;
     height: 100dvh;
     opacity: 1;
-    animation: hideOverlay 1.75s ease-out forwards;
+    animation: hideOverlay 1s ease-out forwards;
 }
 
 .name>div>span {
