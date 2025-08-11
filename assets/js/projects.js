@@ -209,43 +209,31 @@ async function showPreview(e) {
             img.style.transform = `translateX(-50%) translateY(-50%) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
         });
     } else { // mobile
+        function handleTilt(event) {
+            const normX = (event.gamma || 0) / 90;
+            const normY = -(event.beta || 0) / 90;
+
+            const scaleX = 1 - Math.abs(normX);
+            const scaleY = 1 - Math.abs(normY);
+
+            const rotateY = normX * 50 * scaleY;
+            const rotateX = normY * 50 * scaleX;
+
+            img.style.transform = `translate(-50%, -50%) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        }
+
         if (typeof DeviceOrientationEvent !== 'undefined' &&
             typeof DeviceOrientationEvent.requestPermission === 'function') {
-            // iOS & modern Android
             try {
                 const res = await DeviceOrientationEvent.requestPermission();
                 if (res === 'granted') {
-                    window.addEventListener('deviceorientation', (event) => {
-                        const normX = -(event.gamma || 0) / 90;
-                        const normY = (event.beta || 0) / 90;
-
-                        const scaleX = 1 - Math.abs(normX);
-                        const scaleY = 1 - Math.abs(normY);
-
-                        const rotateY = normX * 50 * scaleY;
-                        const rotateX = normY * 50 * scaleX;
-
-                        img.style.transform = `translate(-50%, -50%) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-                    });
-                } else {
-                    alert('Tilt effect denied');
+                    window.addEventListener('deviceorientation', handleTilt);
                 }
             } catch (e) {
                 console.error(e);
             }
         } else {
-            window.addEventListener('deviceorientation', (event) => {
-                const normX = (event.gamma || 0) / 90;
-                const normY = -(event.beta || 0) / 90;
-
-                const scaleX = 1 - Math.abs(normX);
-                const scaleY = 1 - Math.abs(normY);
-
-                const rotateY = normX * 20 * scaleY;
-                const rotateX = normY * 20 * scaleX;
-
-                img.style.transform = `translate(-50%, -50%) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-            });
+            window.addEventListener('deviceorientation', handleTilt);
         }
     }
 
