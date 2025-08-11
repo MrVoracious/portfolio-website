@@ -16,7 +16,7 @@ body {
     flex-direction: column;
     background: var(--bg);
     color: var(--text);
-    background-color: black;
+    background: url(../images/noise.webp);
 }
 
 main {
@@ -26,15 +26,6 @@ main {
     justify-content: center;
     align-items: center;
 
-}
-
-.noise {
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    z-index: -1;
-    top: 0;
-    left: 0;
 }
 
 @font-face {
