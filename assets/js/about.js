@@ -1,3 +1,8 @@
+function isMobile() {
+    return /Mobi|Android/i.test(navigator.userAgent) ||
+        (window.innerWidth <= 800 && window.innerHeight <= 800);
+}
+
 const achievmentDivs = document.getElementsByClassName("achievment")
 const achievmentsContainer = document.getElementById("achievmentsContainer")
 const helper = document.getElementById("helper")
@@ -211,7 +216,7 @@ function resetGithub(transition) {
             github.style.transition = "none";
         }, 300);
     }
-    github.style.position = "absolute";
+    github.style.position = "fixed";
     github.style.left = gitLeft + "px";
     github.style.top = gitTop + "px";
     github.style.height = gitHeight + "px";
@@ -259,7 +264,7 @@ function randInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-resetGithub(false);
+if (!isMobile) {resetGithub(false);}
 
 function startGame() {
     gitBall(true);

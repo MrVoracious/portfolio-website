@@ -62,7 +62,7 @@ main {
     padding-bottom: 0;
 }
 
-.awards .card-content{
+.awards .card-content {
     padding-bottom: 0 !important;
 }
 
@@ -74,7 +74,7 @@ main {
 
 
 
-.spotify > .card-content::after{
+.spotify>.card-content::after {
     position: absolute;
     content: "";
     left: 50%;
@@ -116,7 +116,7 @@ main {
     cursor: pointer;
 }
 
-.contact .card-content::after{
+.contact .card-content::after {
     position: absolute;
     content: " ";
     width: 0ch;
@@ -128,27 +128,29 @@ main {
     transition: all 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-.contact .card-content{
+.contact .card-content {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     position: relative;
 }
-.contact .card-content svg{
+
+.contact .card-content svg {
     height: 1.5rem;
     fill: white;
     transition: all 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-.contact:hover .card-content::after{
+.contact:hover .card-content::after {
     width: 9ch;
 }
 
-.contact:hover svg{
+.contact:hover svg {
     transform: rotate(-45deg);
 }
-.contact svg:hover{
+
+.contact svg:hover {
     transform: rotate(-45deg) scale(1.25);
 }
 
@@ -219,7 +221,7 @@ main {
     scroll-behavior: smooth !important;
 }
 
-.helper{
+.helper {
     position: absolute;
     left: 0;
     top: 0;
@@ -249,7 +251,8 @@ main {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     z-index: 1;
 }
-.achievment:hover{
+
+.achievment:hover {
     transform: translateY(-7.5px) scale(1) !important;
     z-index: 5 !important;
 }
@@ -265,11 +268,12 @@ main {
     align-items: center;
 }
 
-.achievment>.icon>img{
+.achievment>.icon>img {
     height: 80%;
     width: auto;
 }
-.holidayHacks{
+
+.holidayHacks {
     height: auto !important;
     width: 80% !important;
 }
@@ -305,7 +309,7 @@ main {
     font-size: 0.75rem;
 }
 
-.desc > .link{
+.desc>.link {
     text-decoration: underline;
 }
 
@@ -329,7 +333,7 @@ main {
     animation-play-state: running;
 }
 
-.stackScroller:hover{
+.stackScroller:hover {
     animation-play-state: paused;
 }
 
@@ -348,6 +352,7 @@ main {
     height: 57.5px;
     margin: 0 1vw;
 }
+
 .techstackContainer>.stackScroller>a>img {
     height: 100%;
     filter: grayscale(1) contrast(1);
@@ -461,6 +466,7 @@ main {
 
 
 }
+
 .linkedin:hover .card-content svg,
 .github:hover .card-content svg {
     fill: #5092d9;
@@ -1015,7 +1021,213 @@ main {
     transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-a{
+a {
     color: inherit;
     text-decoration: none;
+}
+
+
+@media (max-width: 599px) {
+
+    html,
+    body {
+        overflow-x: hidden;
+        position: relative;
+        width: 100vw;
+        max-width: 100vw;
+    }
+
+    body {
+        width: 100vw;
+        max-width: 100vw;
+        overflow-y: scroll;
+        height: max-content;
+        max-height: max-content;
+        overflow: hidden;
+        display: flex;
+        justify-content: start;
+        align-items: start;
+        flex-direction: column;
+    }
+
+    main {
+        width: 100vw;
+        padding-top: 15vh;
+        height: max-content;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(10, 1fr);
+        grid-template-rows: repeat(77, 1fr);
+        height: 328.5vw;
+        width: 90vw;
+        aspect-ratio: auto;
+        gap: 1vh;
+        box-sizing: border-box;
+        margin-bottom: -1vh;
+    }
+
+
+    .gridItem {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+        border-radius: 20px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        background: #101010;
+        box-sizing: border-box;
+        padding: 2vh;
+    }
+
+    .awards {
+        grid-column: 1 / span 10;
+        grid-row: 1 / span 15;
+    }
+
+    .stack {
+        grid-column: 1 / span 10;
+        grid-row: 16 / span 9;
+    }
+
+    .activity {
+        grid-column: 1 / span 10;
+        grid-row: 25 / span 11;
+    }
+
+    .linkedin {
+        grid-column: 1 / span 2;
+        grid-row: 36 / span 4;
+    }
+
+    .github {
+        grid-column: 3 / span 2;
+        grid-row: 36 / span 4;
+    }
+
+    .contact {
+        grid-column: 5 / span 6;
+        grid-row: 36 / span 4;
+    }
+
+    .spotify {
+        grid-column: 1 / span 10;
+        grid-row: 40 / span 8;
+    }
+
+    .wpm {
+        grid-column: 1 / span 10;
+        grid-row: 48 / span 11;
+    }
+
+    .background {
+        grid-column: 1 / span 10;
+        grid-row: 59 / span 18;
+    }
+
+    .fun {
+        display: none;
+    }
+
+    .keyboard {
+        display: none;
+    }
+
+    .heading {
+        padding: 2vw 3vw;
+    }
+
+    .heading svg {
+        margin-right: 1.5vw;
+    }
+
+    .content {
+        width: 100%;
+        box-sizing: border-box;
+        height: calc(100% - 5vw);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .achievment>.content>.header {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: black;
+    }
+
+    .achievment>.content>.header>.name {
+        font-size: 0.85rem;
+        font-weight: 500;
+    }
+
+    .achievment>.content>.header>.time {
+        font-size: 0.75rem;
+        color: rgba(0, 0, 0, 0.6);
+    }
+
+    .achievment>.content>.desc {
+        color: rgba(0, 0, 0, 0.8);
+        font-size: 0.75rem;
+    }
+
+    .achievment>.icon {
+        height: calc(100% - 4vw);
+        margin-right: 2.75vw;
+    }
+
+    .achievment {
+        padding: 0 2.75vw;
+    }
+
+    .techstackContainer>.stackScroller>a {
+        height: 45px;
+        margin: 0 3vw;
+
+    }
+
+    #contrib-grid {
+        display: grid;
+        grid-auto-flow: column;
+        grid-template-rows: repeat(7, 11px);
+        grid-auto-columns: 11px;
+        gap: 2px;
+        width: 100%;
+        height: 100%;
+        overflow-x: scroll;
+        scrollbar-color: var(--border) transparent;
+        position: relative;
+    }
+
+    #contrib-grid::after{
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to top, #101010, transparent);
+    }
+
+    .contrib {
+        border-radius: 2px;
+    }
+
+    .contributions {
+        right: 2vh;
+        top: calc(2vh + 2.5vw);
+        font-size: 0.75rem;
+    }
+
+    .lastPushed {
+        font-size: 0.75rem;
+        position: absolute;
+        bottom: 2vh;
+    }
+
+    .background {
+        font-size: 1.15rem;
+    }
 }

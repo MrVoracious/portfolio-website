@@ -210,8 +210,8 @@ async function showPreview(e) {
         });
     } else { // mobile
         function handleTilt(event) {
-            const normX = (event.gamma || 0) / 90;
-            const normY = -(event.beta || 0) / 90;
+            const normX = -(event.gamma || 0) / 90;
+            const normY = (event.beta || 0) / 90;
 
             const scaleX = 1 - Math.abs(normX);
             const scaleY = 1 - Math.abs(normY);
