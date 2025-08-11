@@ -37,7 +37,7 @@ const frameInterval = isMobile() ? 33 : 16;
 function initGrid() {
   points = [];
   for (let y = 0; y <= canvas.height; y += spacing) {
-    for (let x = 0; x <= canvas.width; x += spacing) {
+    for (let x = 0; x <= (canvas.width + 10); x += spacing) {
       points.push({ x, y, ox: x, oy: y });
     }
   }
@@ -52,7 +52,7 @@ function drawStaticGrid() {
   // Horizontal
   for (let y = 0; y <= canvas.height; y += spacing) {
     ctx.beginPath();
-    for (let x = 0; x <= canvas.width; x += spacing) {
+    for (let x = 0; x <= (canvas.width + 10); x += spacing) {
       let pt = points.find(p =>
         Math.abs(p.x - x) < spacing && Math.abs(p.y - y) < spacing
       );

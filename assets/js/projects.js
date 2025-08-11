@@ -1,3 +1,9 @@
+
+function isMobile() {
+    return /Mobi|Android/i.test(navigator.userAgent) ||
+        (window.innerWidth <= 800 && window.innerHeight <= 800);
+}
+
 const container = document.querySelector('.projectsNameContainer');
 const defaultDiv = document.getElementById("defaultdiv")
 const defaultDivSpan = document.getElementById("defaultdivspan")
@@ -135,49 +141,111 @@ document.addEventListener('click', (event) => {
 });
 const navOptions = document.getElementById("options")
 let navOffets = navOptions.getBoundingClientRect()
-fakeNav.style.left = navOffets.right - 25 + 'px';
-fakeNav.style.top = navOffets.top + 'px';
-fakeNav.style.height = navOffets.height + 'px';
+fakeNavReset()
+function fakeNavReset() {
+    fakeNav.style.pointerEvents = "none"
+    if (!isMobile()) {
+        fakeNav.style.left = navOffets.right - 25 + 'px';
+        fakeNav.style.top = navOffets.top + 'px';
+        fakeNav.style.height = navOffets.height + 'px';
+        fakeNav.style.opacity = '0';
+        fakeNavFlag = false
+    } else {
+        const img = document.querySelector(".previewImg")
+        const imgOffsets = img.getBoundingClientRect()
+        fakeNav.style.opacity = '0';
+        fakeNav.style.top = 'calc(50% + 28.125vw)'
+        fakeNav.style.left = '50%'
+        fakeNav.style.height = navOffets.height + 'px';
+        fakeNav.style.transform = 'translateX(-50%) translateY(-150%)'
+    }
+
+}
+function fakeNavShow() {
+    fakeNav.style.pointerEvents = "all"
+    if (!isMobile()) {
+        navOffets = navOptions.getBoundingClientRect()
+        fakeNav.style.left = navOffets.right + 5 + 'px';
+        fakeNav.style.opacity = '1';
+        fakeNavFlag = true
+    } else {
+        fakeNav.style.opacity = '1';
+        fakeNav.style.transform = 'translateX(-50%) translateY(0%)'
+    }
+}
 let img;
 
-function showPreview(e) {
-    navOffets = navOptions.getBoundingClientRect()
-    fakeNav.style.left = navOffets.right + 5 + 'px';
-    fakeNav.style.opacity = '1';
-    fakeNavFlag = true
+async function showPreview(e) {
     img = document.getElementById(e)
     img.style.transformOrigin = "left top";
     img.style.scale = "1";
     setTimeout(() => {
+        document.querySelector(".urlContainerOpened").classList.remove("urlContainerOpened")
+    }, 0);
+    setTimeout(() => {
         img.style.transformOrigin = "center center";
+        fakeNavShow()
     }, 300);
     const body = document.body
-    body.addEventListener('mousemove', (e) => {
-        const rect = body.getBoundingClientRect();
+    if (!isMobile()) {
+        body.addEventListener('mousemove', (e) => {
+            const rect = body.getBoundingClientRect();
 
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
 
-        let normX = (x - centerX) / centerX;
-        let normY = (y - centerY) / centerY;
+            let normX = (x - centerX) / centerX;
+            let normY = (y - centerY) / centerY;
 
-        normY *= -1;
+            normY *= -1;
 
-        const scaleX = 1 - Math.abs(normX);
-        const scaleY = 1 - Math.abs(normY);
+            const scaleX = 1 - Math.abs(normX);
+            const scaleY = 1 - Math.abs(normY);
 
-        const rotateY = normX * 20 * scaleY;
-        const rotateX = normY * 20 * scaleX;
-        img.style.transform = `translateX(-50%) translateY(-50%) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-    });
+            const rotateY = normX * 20 * scaleY;
+            const rotateX = normY * 20 * scaleX;
+            img.style.transform = `translateX(-50%) translateY(-50%) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+    } else { // mobile
+        if (typeof DeviceOrientationEvent !== 'undefined' &&
+            typeof DeviceOrientationEvent.requestPermission === 'function') {
+            // iOS & modern Android
+            try {
+                const res = await DeviceOrientationEvent.requestPermission();
+                if (res === 'granted') {
+                    initTiltEffect();
+                } else {
+                    alert('Tilt effect denied');
+                }
+            } catch (e) {
+                console.error(e);
+            }
+        } else {
+            // Older browsers
+            initTiltEffect();
+        }
+    }
+
+    function initTiltEffect() {
+        window.addEventListener('deviceorientation', (event) => {
+            const normX = (event.gamma || 0) / 90;
+            const normY = -(event.beta || 0) / 90;
+
+            const scaleX = 1 - Math.abs(normX);
+            const scaleY = 1 - Math.abs(normY);
+
+            const rotateY = normX * 20 * scaleY;
+            const rotateX = normY * 20 * scaleX;
+
+            img.style.transform = `translate(-50%, -50%) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+    }
 
 }
 fakeNav.addEventListener('click', (event) => {
-    fakeNav.style.left = navOffets.right - 25 + 'px';
-    fakeNav.style.opacity = '0';
-    fakeNavFlag = false
+    fakeNavReset()
     img.style.transformOrigin = "left top";
     img.style.scale = "0";
 });
