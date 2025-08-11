@@ -1,22 +1,22 @@
-anime.timeline()
-  .add({
-    targets: '.char',
-    translateY: [50, 0],
-    opacity: [0, 1],
-    easing: 'easeOutExpo',
-    duration: 800,
-    delay: (el, i) => i * 50
-  })
+// anime.timeline()
+//   .add({
+//     targets: '.char',
+//     translateY: [50, 0],
+//     opacity: [0, 1],
+//     easing: 'easeOutExpo',
+//     duration: 800,
+//     delay: (el, i) => i * 50
+//   })
 
-anime({
-  targets: '.tagline',
-  opacity: [0, 1],
-  translateX: [-100, 0],
-  translateY: [-100, -100],
-  easing: 'easeOutExpo',
-  duration: 1000,
-  delay: 300
-});
+// anime({
+//   targets: '.tagline',
+//   opacity: [0, 1],
+//   translateX: [-100, 0],
+//   translateY: [-100, -100],
+//   easing: 'easeOutExpo',
+//   duration: 1000,
+//   delay: 300
+// });
 
 
 
