@@ -216,8 +216,6 @@ async function showPreview(e) {
                 const res = await DeviceOrientationEvent.requestPermission();
                 if (res === 'granted') {
                     window.addEventListener('deviceorientation', (event) => {
-                        alert(event.beta)
-                        alert(event.gamma)
                         const normX = (event.gamma || 0) / 90;
                         const normY = -(event.beta || 0) / 90;
 
