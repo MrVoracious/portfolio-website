@@ -138,7 +138,7 @@ function loadSpotify() {
     const spotifyLoader = document.getElementById("spotifyCardContent")
     setTimeout(() => {
         spotifyLoader.style.setProperty('--after-opacity', 0);
-    }, 1250);
+    }, 1500);
     fetch("https://portfolio-api-server-beta.vercel.app/api/now-playing")
         .then(res => res.json())
         .then(data => {
