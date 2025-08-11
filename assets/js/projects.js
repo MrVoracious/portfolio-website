@@ -170,7 +170,7 @@ function fakeNavShow() {
         fakeNavFlag = true
     } else {
         fakeNav.style.opacity = '1';
-        fakeNav.style.transform = 'translateX(-50%) translateY(0%)'
+        fakeNav.style.transform = 'translateX(-50%) translateY(50%)'
     }
 }
 let img;
@@ -216,9 +216,8 @@ async function showPreview(e) {
                 const res = await DeviceOrientationEvent.requestPermission();
                 if (res === 'granted') {
                     window.addEventListener('deviceorientation', (event) => {
-                        console.log(event.beta, event.gamma)
-                        const normX = (event.gamma || 0) / 90;
-                        const normY = -(event.beta || 0) / 90;
+                        const normX = -(event.gamma || 0) / 90;
+                        const normY = (event.beta || 0) / 90;
 
                         const scaleX = 1 - Math.abs(normX);
                         const scaleY = 1 - Math.abs(normY);
