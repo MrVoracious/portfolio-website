@@ -216,14 +216,15 @@ async function showPreview(e) {
                 const res = await DeviceOrientationEvent.requestPermission();
                 if (res === 'granted') {
                     window.addEventListener('deviceorientation', (event) => {
+                        console.log(event.beta, event.gamma)
                         const normX = (event.gamma || 0) / 90;
                         const normY = -(event.beta || 0) / 90;
 
                         const scaleX = 1 - Math.abs(normX);
                         const scaleY = 1 - Math.abs(normY);
 
-                        const rotateY = normX * 20 * scaleY;
-                        const rotateX = normY * 20 * scaleX;
+                        const rotateY = normX * 50 * scaleY;
+                        const rotateX = normY * 50 * scaleX;
 
                         img.style.transform = `translate(-50%, -50%) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
                     });
