@@ -477,7 +477,7 @@ textarea:focus {
 
     .msgLine {
         height: 100%;
-        overflow: hidden;
+        /* overflow: hidden; */
         align-items: flex-start;
     }
 
@@ -512,5 +512,13 @@ textarea:focus {
         padding: 1vh 7vw;
         cursor: pointer;
         transition: 150ms ease-in-out;
+    }
+
+    main {
+        width: 100vw;
+        height: max-content;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }
