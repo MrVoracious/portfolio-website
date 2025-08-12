@@ -50,7 +50,7 @@ main {
     position: absolute;
     top: 0;
     left: 0;
-    transform: translateY(-75%) !important;
+    transform: translateY(-75%);
     width: 100%;
     display: flex;
     padding: 0 25px;
@@ -181,7 +181,7 @@ main {
     }
 
     .name {
-        bottom: 0%;
+        bottom: 1.5vh;
         /* transform: translateY(75%); */
     }
 
@@ -191,7 +191,6 @@ main {
 
     .tagline {
         padding: 0 6vw;
-        /* transform: translateY(-100%) !important; */
         font-size: calc(100vw * 0.043);
     }
 
