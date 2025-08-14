@@ -216,9 +216,10 @@ function resetGithub(transition) {
             github.style.transition = "none";
         }, 300);
     }
-    github.style.position = "fixed";
-    github.style.left = gitLeft + "px";
-    github.style.top = gitTop + "px";
+    github.style.position = "absolute";
+    github.style.left = 0 + "px";
+    github.style.top = 0 + "px";
+    github.style.transform = `translate(${gitLeft}px, ${gitTop}px)`
     github.style.height = gitHeight + "px";
     github.style.width = gitWidth + "px";
     githubContent.style.background = "#101010";
@@ -264,7 +265,9 @@ function randInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-if (!isMobile) {resetGithub(false);}
+if (!isMobile()) {
+    resetGithub(false);
+}
 
 function startGame() {
     gitBall(true);
@@ -294,15 +297,20 @@ function moveBall() {
     for (let i = 0; i < steps; i++) {
         ballX += stepX;
         ballY += stepY;
-        ball.style.left = ballX + "px";
-        ball.style.top = ballY + "px";
+        // ball.style.left = ballX + "px";
+        // ball.style.top = ballY + "px";
+        github.style.transform = `translate(${ballX}px, ${ballY}px)`
         checkCollisions();
     }
 }
 
 function gameLoop() {
-    if (ballX <= 0 || ballX + ballSize >= window.innerWidth) velX *= -1;
-    if (ballY <= 0) velY *= -1;
+    if (ballX <= 0 || ballX + ballSize >= window.innerWidth){
+         velX *= -1;
+    }
+    if (ballY <= 0){
+         velY *= -1;
+    }
 
     if (ballY > window.innerHeight) {
         cancelAnimationFrame(animationFrame);
