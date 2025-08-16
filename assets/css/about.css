@@ -48,7 +48,7 @@ main {
     flex-direction: column;
     justify-content: start;
     align-items: start;
-    border-radius: 20px;
+    border-radius: 2.35vh;
     overflow: hidden;
     border: 1px solid var(--border);
     background: #101010;
@@ -217,6 +217,7 @@ main {
     margin-top: 2vh;
     scrollbar-color: var(--border) transparent;
     position: relative;
+    scrollbar-gutter: stable overlay;
     cursor: pointer;
     scroll-behavior: smooth !important;
 }
@@ -796,7 +797,7 @@ main {
     top: 50%;
     transform: translateX(-50%) translateY(-50%);
     z-index: 1;
-    font-size: 10rem;
+    font-size: 16.5vh;
     font-weight: 600;
     color: rgba(129, 129, 129, 0.1);
 }
@@ -818,12 +819,12 @@ main {
 }
 
 .speedVal {
-    font-size: 2rem;
+    font-size: 3.5vh;
     margin-bottom: 1vh;
 }
 
 .speedVal span {
-    font-size: 4rem;
+    font-size: 6.5vh;
 }
 
 .WPMtime {
@@ -926,7 +927,7 @@ main {
 }
 
 .background {
-    font-size: 1.25rem;
+    font-size: 2vh;
 }
 
 .backgroundContent {
