@@ -20,14 +20,19 @@
     <script type="application/ld+json">
         {
         "@context": "https://schema.org",
-        "@type": "Person",
+        "@type": "WebSite",
+        "url": "https://vanditkad.xyz/",
         "name": "Vandit Kad",
-        "url": "https://vanditkad.xyz",
-        "sameAs": [
-            "https://www.linkedin.com/in/vanditkad/",
-            "https://github.com/MrVoracious"
-        ],
-        "jobTitle": "Student & Developer"
+        "publisher": {
+            "@type": "Person",
+            "name": "Vandit Kad",
+            "url": "https://vanditkad.xyz"
+        },
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://vanditkad.xyz/?s={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
         }
     </script>
 </head>
