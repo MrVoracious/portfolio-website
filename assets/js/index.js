@@ -24,7 +24,7 @@ window.addEventListener("resize", () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
   initGrid();
-  if (isMobile()) drawStaticGrid(); // redraw once for mobile
+  if (isMobile()) drawStaticGrid();
 });
 
 const PUSH_MULTIPLIER = 3;
@@ -131,5 +131,11 @@ function draw(time) {
 if (isMobile()) {
   drawStaticGrid(); // Draw once, no animation
 } else {
-  draw(); // Interactive animation
+  // Only start drawing after first mouse move
+  window.addEventListener("mousemove", function startAnim(e) {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+    draw(); // Start animation
+    window.removeEventListener("mousemove", startAnim); // Remove listener
+  });
 }
