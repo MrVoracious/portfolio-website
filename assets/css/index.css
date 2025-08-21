@@ -58,6 +58,7 @@ main {
     font-size: 2.5rem;
     color: rgba(255, 255, 255, 0.5);
     font-family: sterling;
+    font-weight: inherit;
 }
 
 .name>h1 {
