@@ -86,6 +86,12 @@ nav {
     -webkit-backdrop-filter: blur(5px);
 }
 
+.higlightActive {
+    transform: scale(1.1) !important;
+    background: rgba(255, 255, 255, 0) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
 @keyframes landingAnimeNav {
     0% {
         opacity: 0;

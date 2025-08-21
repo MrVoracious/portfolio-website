@@ -5,18 +5,18 @@ let scaleTimeout;
 function moveHighlight(option) {
     clearTimeout(scaleTimeout);
 
-    highlight.style.transform = 'scale(1.1)';
-    highlight.style.background = 'rgba(255, 255, 255, 0)';
-    highlight.style.border = "1px solid rgba(255, 255, 255, 0.1)"
+    highlight.classList.add("higlightActive")
 
-    highlight.style.width = `calc(${option.offsetWidth}px - 0.75vw)`;
-    highlight.style.left = `calc(${option.offsetLeft}px + 0.375vw)`;
-    highlight.style.height = `calc(${option.offsetHeight}px - 0.5vw)`;
+    const width = option.offsetWidth;
+    const left = option.offsetLeft;
+    const height = option.offsetHeight;
+
+    highlight.style.width = `calc(${width}px - 0.75vw)`;
+    highlight.style.left = `calc(${left}px + 0.375vw)`;
+    highlight.style.height = `calc(${height}px - 0.5vw)`;
 
     scaleTimeout = setTimeout(() => {
-        highlight.style.transform = 'scale(1)';
-        highlight.style.background = 'rgba(255, 255, 255, 0.1)';
-        highlight.style.border = "1px solid rgba(255, 255, 255, 0)"
+        highlight.classList.remove("higlightActive")
     }, 300);
 }
 
@@ -24,12 +24,14 @@ function returnToActive() {
     clearTimeout(scaleTimeout);
     const active = options.querySelector(".active");
 
-    highlight.style.width = `calc(${active.offsetWidth}px - 1vh)`;
-    highlight.style.left = `calc(${active.offsetLeft}px + 0.5vh)`;
-    highlight.style.height = `calc(${active.offsetHeight}px - 1vh)`;
-    highlight.style.transform = 'scale(1)';
-    highlight.style.background = 'rgba(255, 255, 255, 0.1)';
-    highlight.style.border = "1px solid rgba(255, 255, 255, 0)"
+    const width = active.offsetWidth;
+    const left = active.offsetLeft;
+    const height = active.offsetHeight;
+
+    highlight.style.width = `calc(${width}px - 1vh)`;
+    highlight.style.left = `calc(${left}px + 0.5vh)`;
+    highlight.style.height = `calc(${height}px - 1vh)`;
+    highlight.classList.remove("higlightActive")
 }
 options.querySelectorAll(".option").forEach(option => {
     option.addEventListener("click", (e) => {
@@ -43,7 +45,11 @@ options.querySelectorAll(".option").forEach(option => {
 });
 
 window.addEventListener("load", returnToActive);
-window.addEventListener("resize", returnToActive);
+let resizeTimer;
+window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(returnToActive, 100);
+});
 
 // document.addEventListener('DOMContentLoaded', function () {
 //     // scroll
