@@ -60,16 +60,19 @@ main {
     font-family: sterling;
 }
 
-.name>div {
+.name>h1 {
     width: min-content;
     display: flex;
     font-weight: 500;
     font-family: sterling;
 }
 
-.name>div>span {
+.name>h1>span {
     cursor: pointer;
     font-family: inherit;
+}
+.name>h1>span {
+    position: relative;
 }
 
 .blurDiv {
@@ -122,9 +125,7 @@ main {
     animation: hideOverlay 1s ease-out forwards;
 }
 
-.name>div>span {
-    position: relative;
-}
+
 
 .popup {
     position: absolute;
@@ -154,6 +155,7 @@ main {
 #text {
     font-size: calc(100vw * 0.192);
     height: calc((100vw * 0.192) + 1vw);
+    font-weight: inherit;
 }
 
 .char:nth-child(5) {
